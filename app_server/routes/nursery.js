@@ -1,10 +1,10 @@
 // imports
 const express = require('express');
 const router = express.Router();
-const ctrlFlowers = require('../controllers/flowers');
+const ctrlNursery = require('../controllers/nursery');
 
-/* GET flowers page */
-router.get('/', ctrlFlowers.flowers);
+/* GET nursery page */
+router.get('/', ctrlNursery.nursery);
 
 // export
 module.exports = router;
