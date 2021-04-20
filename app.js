@@ -1,6 +1,6 @@
-// imports & variable definitions
+// dependencies
 const createError = require('http-errors');
-const express = require('express'); // set express module to variable
+const express = require('express'); // set express module to constant variable
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -11,19 +11,19 @@ const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
 const nurseryRouter = require('./app_server/routes/nursery');
 
-// invoke express module
+
+/* Invoke Express Module */
 const app = express();
 
-/* view engine */
-// set the view engine setup
-app.set('views', path.join(__dirname, 'app_server', 'views'));
-// register handlebars partials (https://www.npmjs.com/package/hbs)
-hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials'));
-// set view engine to handlebars
-app.set('view engine', 'hbs');
+
+/* View Engine */
+app.set('views', path.join(__dirname, 'app_server', 'views'));  // setup view engine (set views to 'views' directory)
+hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // register handlebars partials (https://www.npmjs.com/package/hbs)
+app.set('view engine', 'hbs');  // set view engine to handlebars
 
 
-app.use(logger('dev'));
+/* use() functions */
+app.use(logger('dev')); // development output formatting for logs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -32,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter); // send request for '/' to the index router
 app.use('/users', usersRouter); // send request for '/users' to the users router
 app.use('/nursery', nurseryRouter); // send request for '/nursery' to the nursery router
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,5 +49,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// export application
+
+/* Export Application (Express Module) */
 module.exports = app;

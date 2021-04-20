@@ -2,7 +2,7 @@
   "name": "floweringspaces",
   "version": "1.0.0",
   "description": "Flowering Spaces",
-  "author": "Brendan OConnell (from SNHU COCE project <coce@snhu.edu>)",
+  "author": "Brendan OConnell <skud01db@gmail.com> (based on SNHU COCE project: CS465 - Full Stack I  <coce@snhu.edu>)",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

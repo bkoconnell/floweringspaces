@@ -1,6 +1,6 @@
-// imports
+// dependencies
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // import Router() function
 const ctrlNursery = require('../controllers/nursery');
 
 /* GET nursery page */

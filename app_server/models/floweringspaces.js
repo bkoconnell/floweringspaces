@@ -1,7 +1,7 @@
-// import
+// dependencies
 const mongoose = require('mongoose');
 
-// define the flower schema
+// define the flowers schema
 const flowerSchema = new mongoose.Schema({
     code: { type: String, required: true, index: true },
     name: { type: String, required: true, index: true },

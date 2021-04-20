@@ -13,7 +13,7 @@ const nursery = (req, res) => {
     res.render('nursery', {title: pageTitle, flower}); // render 'nursery' page and pass array of objects (flower)
 };
 
-// export responses
+// export response
 module.exports = {
     nursery
 }

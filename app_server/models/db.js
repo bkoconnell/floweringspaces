@@ -1,4 +1,4 @@
-// imports
+// dependencies
 const mongoose = require('mongoose');
 const readLine = require('readline');
 
@@ -9,6 +9,7 @@ const dbURI = `mongodb://${host}/floweringspaces`; // database connection
 // avoid 'current Server Discovery and Monitoring engine is deprecated'
 mongoose.set('useUnifiedTopology', true);
 
+// mongoose connect method
 const connect = () => {
     setTimeout(() => mongoose.connect(dbURI, {
         useNewUrlParser: true,
@@ -53,6 +54,8 @@ process.on('SIGTERM', () => {
   });
 });
 
+
+/* Invoke mongoose connect() method */
 connect();
 
 // bring in the mongoose schema for floweringspaces (flowerSchema)
