@@ -1,6 +1,7 @@
 // import Angular modules
 import { Component, OnInit } from '@angular/core';
-// import trip-data service & trip model
+import { Router } from "@angular/router";
+// import services & models
 import { FlowerDataService } from '../services/flower-data.service';
 import { Flower } from '../models/flower';
 
@@ -17,11 +18,23 @@ export class FlowerListingComponent implements OnInit {
 
   message: string; // declare message string
 
-  constructor(private flowerDataService: FlowerDataService) { } 
+  // constructor: define parameters to inject an instance within this class
+  constructor(
+    private flowerDataService: FlowerDataService,
+    private router: Router
+    ) { }
 
+  // method to add flowers
+  private addFlower(): void {
+    console.log('Inside FlowerListingComponent#addFlower'); // console output
+    this.router.navigate(['add-flower']); // use router to navigate to 'add-flower' route
+  }
+
+  // method to get flowers
   private getFlowers(): void {
-    console.log('Inside FlowerListingComponent#getFlowers');
+    console.log('Inside FlowerListingComponent#getFlowers'); // console output
     this.message = 'Searching for flowers';
+    // invoke service method getFlowers() to get flower array(s)
     this.flowerDataService
       .getFlowers()
         .then(foundFlowers => {

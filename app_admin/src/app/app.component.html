@@ -1,10 +1,12 @@
-<!-- <h1>{{ title }}</h1> -->
+<!-- Navigation Bar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-      <a class="navbar-brand" href="#">{{title}}</a>
+    <a class="navbar-brand" href="#">{{ title }}</a>
   </div>
 </nav>
 
+<!-- Container Class: 
+  Handle initial display & page navigation via router -->
 <div class="container">
-  <app-flower-listing></app-flower-listing>
+  <router-outlet></router-outlet>
 </div>
