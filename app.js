@@ -30,6 +30,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// allows CORS (cross-origin resource sharing)
+app.use('/api', (req, res, next) => {                                 // use API endpoint
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); // allow access from Angular
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // specify which headers are allowed 
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // specify which methods are allowed to be called
+  next();
+});
+
 // use routers
 app.use('/', indexRouter); // send request for '/' to the index router
 app.use('/users', usersRouter); // send request for '/users' to the users router
