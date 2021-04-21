@@ -1,0 +1,16 @@
+<!-- <pre>{{ trips | json }}</pre> -->
+<div class="row">
+  <!-- angular loop for trips -->
+  <div *ngFor="let flower of flowers">
+      <div class="card ml-4" style="width: 18rem;">
+          <div class="card-header">{{ flower.name }}</div>
+          <img src="assets/images/{{ flower.image }}" alt="flower thumbnail" class="card-img-top">
+          <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted"> {{ flower.latin }} </h6>
+              <p class="card-subtitle mt-3 mb-3 text-muted"> {{ flower.size }} ...  
+                  {{ flower.cost }} </p>
+              <p class="card-text" [innerHTML]="flower.description"></p>
+          </div>
+      </div>
+  </div>
+</div>
