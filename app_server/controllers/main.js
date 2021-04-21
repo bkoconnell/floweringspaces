@@ -1,4 +1,4 @@
-/* GET homepage */
+/* GET homepage view */
 const index = (req, res) => {
     res.render('index', {title: 'Flowering Spaces'});
 };

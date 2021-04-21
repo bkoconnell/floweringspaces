@@ -16,9 +16,11 @@
 						<div class="body">
 							<h1>Nursery</h1>
 							<ul id="sites">
-								{{#each flower}}
+								<!-- Handlebars loop for each 'flowers' -->
+								{{#each flowers}}
 								<li>
-									<a href="/nursery"><img src="images/{{this.image}}" alt="Img"></a>
+<!-- #FIXME: /api/flowers/{{this.code}}  is for dev/test -->
+									<a href="/api/flowers/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
 									<h2><a href="/nursery">{{this.name}}</a></h2>
 									{{this.latin}}
 									{{{this.description}}}
