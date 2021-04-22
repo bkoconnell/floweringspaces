@@ -11,7 +11,7 @@ export interface Flower {
     latin: string,
     type: string,
     size: string,
-    cost: string,
+    price: string,
     image: string,
     description: string
 }

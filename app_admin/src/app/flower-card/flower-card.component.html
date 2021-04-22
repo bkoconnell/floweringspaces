@@ -3,8 +3,8 @@
   <img src="assets/images/{{ flower.image }}" alt="flower thumbnail" class="card-img-top">
   <div class="card-body">
       <h6 class="card-subtitle mb-2 text-muted"> {{ flower.latin }} </h6>
-      <p class="card-subtitle mt-3 mb-3 text-muted"> {{flower.size}} Cost:  
-          {{ flower.cost }} </p>
+      <p class="card-subtitle mt-3 mb-3 text-muted"> {{flower.size}} </p>
+      <p class="card-subtitle mt-3 mb-3 text-muted">Price: {{ flower.price }} dollars </p>
       <p class="card-text" [innerHTML]="flower.description"></p>
   </div>
 </div>
