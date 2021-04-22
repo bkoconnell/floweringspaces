@@ -1,54 +1,97 @@
+/**
+ * REST API --> backend (server) controller logic
+ */
+
+
 // dependencies
 const mongoose = require('mongoose'); // .set('debug', true);
-const Flowers = mongoose.model('flowers'); // bring in flowers schema
+const Flowers = mongoose.model('flowers'); // instantiate flowers schema
 
 
-// GET: /flowers - lists all the flowers
+/**
+ * Method for GET /flowers
+ * returns everything in the flowers collection
+ * @param {*} req 
+ * @param {*} res 
+ */
 const flowersList = async (req, res) => {
+    // model instance
     Flowers
-        .find({}) // mongoose function: find (empty filter to find all instances)
-        .exec((err, flowers) => { // execute callback
+        // mongoose function to Read All documents in collection (empty filter = find all instances)
+        .find({})
+        // execute callback, pass response parameters
+        .exec((err, flowers) => {
+            // no data found
             if (!flowers) {
+                // return response to requester
                 return res
-                    .status(404) // no flowers found
-                    .json({ "message": "flowers not found" }); // output message
+                    .status(404)                               // http status code (not found)
+                    .json({ "message": "flowers not found" }); // message response
+            // bad request, invalid content
             } else if (err) {
+                // return response to requester
                 return res
-                    .status(404) // bad request, invalid content
-                    .json(err); // output error message
+                    .status(400) // http status code (bad request)
+                    .json(err);  // error response
+            // request successful
             } else {
+                // return response to requester
                 return res
-                    .status(200) // flower(s) found successfully
-                    .json(flowers); // return flowers list / data
+                    .status(200)    // http status code (OK - success)
+                    .json(flowers); // data response
             }
         });
 };
 
-// GET: /flowers/:flowerCode - returns a single flower
+/**
+ * Method for GET: /flowers/:flowerCode
+ * returns a single flower based on request parameter (flower code) passed in
+ * @param {*} req 
+ * @param {*} res 
+ */
 const flowersFindCode = async (req, res) => {
+    // model instance
     Flowers
-        .find({ 'code': req.params.flowerCode }) // mongoose function: find by passing code from request parameter
-        .exec((err, flower) => { // execute callback
+        // mongoose function to Read One document
+        // (finds single document where 'code' value matches request parameter/flower code)
+        .find({ 'code': req.params.flowerCode })
+        // execute callback, pass response parameters
+        .exec((err, flower) => {
+            // no matching document found
             if (!flower) {
+                // return response to requester
                 return res
-                    .status(404) // flower not found
-                    .json({ "message": "flower not found"}); // output message
+                    .status(404)                             // http status code (not found)
+                    .json({ "message": "flower not found"}); // message response
+            // bad request, invalid content
             } else if (err) {
+                // return response to requester
                 return res
-                    .status(404) // bad request, invalid content
-                    .json(err); // output error message
+                    .status(400) // http status code (bad request)
+                    .json(err);  // error response
+            // request successful
             } else {
+                // return response to requester
                 return res
-                    .status(200) // flower found successfully
-                    .json(flower); // return flower data
+                    .status(200)   // http status code (OK - success)
+                    .json(flower); // data response
             }
         });
 };
 
-// POST: /flowers    --  post form / add flower
+
+/**
+ * Method for POST: /flowers
+ * adds new data (flower) to collection based on request body (form data) passed in
+ * @param {*} req 
+ * @param {*} res 
+ */
 const flowersAddFlower = async (req, res) => {
+    // model instance
     Flowers
-        .create({  // mongoose function: create (w/ form data/req.body passed in)
+        // mongoose function to Create New document (w/ form data passed in)
+        .create({
+            // form data 
             code: req.body.code,
             name: req.body.name,
             scientific: req.body.scientific,
@@ -58,27 +101,38 @@ const flowersAddFlower = async (req, res) => {
             image: req.body.image,
             description: req.body.description
         },
+        // pass response parameters
         (err, flower) => {
+            // bad request, invalid content
             if (err) {
+                // return response to requester
                 return res
-                    .status(400) // bad request, invalid content
-                    .json(err);
+                    .status(400) // http status code (bad request)
+                    .json(err);  // error response
+            // request successful
             }else{
+                // return response to requester
                 return res
-                    .status(201) // created successfully
-                    .json(flower);
+                    .status(201)   // http status code (Created successfully)
+                    .json(flower); // data response
             }
         });
 }
 
-// PUT: /flowers/:flowerCode    --  locate flower & update it
-const flowersUpdateFlower = async (req, res) => {
 
-    console.log(req.body);  // console output
-    
-    // search logic to find a match to update
+/**
+ * Method for PUT: /flowers/:flowerCode
+ * locate existing flower document based on request parameter (flower code) passed in
+ * then update the document with the request-body values passed in
+ * @param {*} req 
+ * @param {*} res 
+ */
+const flowersUpdateFlower = async (req, res) => {
+    // output to server console for debug (display incoming request body)
+    console.log(req.body);
+    // model instance
     Flowers
-        // mongoose method: search by code and update values with request-body-data passed in
+        // mongoose function to Read One document & Update values w/ request body
         .findOneAndUpdate({ 'code': req.params.flowerCode }, {
             code: req.body.code,
             name: req.body.name,
@@ -88,32 +142,44 @@ const flowersUpdateFlower = async (req, res) => {
             price: req.body.price,
             image: req.body.image,
             description: req.body.description
-        }, { new: true })
+        },        
+        { new: true }) // set 'true' for returned document to reflect data AFTER the update
+        // callbacks
         .then(flower => {
-            // conditional statement for no match
+            // no matching document found
             if (!flower) {
+                // return response to requester
                 return res
-                    .status(404)
-                    .send({
-                        message: "Flower not found with code " + req.params.flowerCode
+                    .status(404) // http status code (not found)
+                    .send({      // send message response
+                        message: "No flower found with code " + req.params.flowerCode
                     });
             }
-            // if match is found, send update to database (request body data)
-            res.send(flower);
-            // error handling
+            // request successful (document found & updated)
+            // response
+            res
+            .status(200)   // http status code (OK - success)
+            .send(flower); // data response (send updated document)
+        // error handling
         }).catch(err => {
+            // no matching document found
             if (err.kind === 'ObjectId') {
+                // return response to requester
                 return res
-                    .status(404)
-                    .send({
+                    .status(404)  // http status code (not found)
+                    .send({       // send message response
                         message: "Flower not found with code " + req.params.flowerCode
                     });
             }
+            // return response to requester
             return res
-                .status(500) // server error
-                .json(err);
+                .status(500) // internal server error
+                .json(err);  // error response
         });
 }
+
+
+// FIXME: add DELETE method (response status code 204 = successful delete request)
 
 
 // export
