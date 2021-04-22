@@ -14,7 +14,7 @@ const nurseryRouter = require('./app_server/routes/nursery');
 const apiRouter = require('./app_api/routes/index');
 
 
-/* Invoke Express Module */
+/* Create Express Application */
 const app = express();
 
 

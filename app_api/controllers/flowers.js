@@ -6,7 +6,7 @@ const Flowers = mongoose.model('flowers'); // bring in flowers schema
 // GET: /flowers - lists all the flowers
 const flowersList = async (req, res) => {
     Flowers
-        .find({}) // mongoose method: find (empty filter to find all instances)
+        .find({}) // mongoose function: find (empty filter to find all instances)
         .exec((err, flowers) => { // execute callback
             if (!flowers) {
                 return res
@@ -27,7 +27,7 @@ const flowersList = async (req, res) => {
 // GET: /flowers/:flowerCode - returns a single flower
 const flowersFindCode = async (req, res) => {
     Flowers
-        .find({ 'code': req.params.flowerCode }) // mongoose method: find by passing code from request parameter
+        .find({ 'code': req.params.flowerCode }) // mongoose function: find by passing code from request parameter
         .exec((err, flower) => { // execute callback
             if (!flower) {
                 return res
@@ -48,7 +48,7 @@ const flowersFindCode = async (req, res) => {
 // POST: /flowers    --  post form / add flower
 const flowersAddFlower = async (req, res) => {
     Flowers
-        .create({  // mongoose method to create w/ request-body-data passed in
+        .create({  // mongoose function: create (w/ form data/req.body passed in)
             code: req.body.code,
             name: req.body.name,
             scientific: req.body.scientific,
