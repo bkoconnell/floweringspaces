@@ -8,36 +8,36 @@
         [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
       <div *ngIf="submitted && f.code.errors">
         <div *ngIf="f.code.errors.required"> 
-          Flower Code is required 
+          Flower Code # is required 
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>Name:</label>
-      <input type="text" formControlName="name" placeholder="Name" class="form-control"
+      <label>Common Name:</label>
+      <input type="text" formControlName="name" placeholder="Common Name" class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
       <div *ngIf="submitted && f.name.errors">
         <div *ngIf="f.name.errors.required"> 
-          Name is required 
+          Common plant name is required 
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label>Scientific Name:</label>
-      <input type="text" formControlName="scientific" placeholder="Scientific" class="form-control"
+      <input type="text" formControlName="scientific" placeholder="Scientific Name" class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.scientific.errors }">
       <div *ngIf="submitted && f.scientific.errors">
         <div *ngIf="f.scientific.errors.required"> 
-          Scientific name is required 
+          Scientific plant name is required 
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label>Plant Type:</label>
-      <input type="text" formControlName="type" placeholder="Type" class="form-control"
+      <input type="text" formControlName="type" placeholder="Plant Type" class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
       <div *ngIf="submitted && f.type.errors">
         <div *ngIf="f.type.errors.required"> 
@@ -52,7 +52,7 @@
         [ngClass]="{ 'is-invalid': submitted && f.size.errors }">
       <div *ngIf="submitted && f.size.errors">
         <div *ngIf="f.size.errors.required"> 
-          Size (height & width) of mature plant is required 
+          Mature plant size is required (height & width)
         </div>
       </div>
     </div>
