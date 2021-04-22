@@ -8,7 +8,7 @@ export interface Flower {
     _id: string, // internal MongoDB primary key
     code: string,
     name: string,
-    latin: string,
+    scientific: string,
     type: string,
     size: string,
     price: string,

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const flowerSchema = new mongoose.Schema({
     code: { type: String, required: true, index: true },
     name: { type: String, required: true, index: true },
-    latin: { type: String, required: true },
+    scientific: { type: String, required: true },
     type: { type: String, required: true },
     size: { type: String, required: true },
     price: { type: String, required: true },

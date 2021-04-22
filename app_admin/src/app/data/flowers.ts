@@ -5,7 +5,7 @@ export const flowers =
     {
         "code": "FLWR00001",
         "name": "Butterfly Weed",
-        "latin": "Asclepias tuberosa",
+        "scientific": "Asclepias tuberosa",
         "type": "Wildflower / Herbaceous perennial",
         "size": "Height: 24-36 in. / Width: 12-18 in.",
         "price": "1 gallon = 15.99",
@@ -15,7 +15,7 @@ export const flowers =
     {
         "code": "FLWR00002",
         "name": "Anise hyssop",
-        "latin": "Agastache foeniculum",
+        "scientific": "Agastache foeniculum",
         "type": "Wildflower / Herbaceous perennial",
         "size": "Height: 24-48 in. / Width: 12-24 in.",
         "price": "1 gallon = 12.99",
@@ -25,7 +25,7 @@ export const flowers =
     {
         "code": "FLWR00003",
         "name": "Phlox (fall) - Nicky",
-        "latin": "Phlox paniculata",
+        "scientific": "Phlox paniculata",
         "type": "Wildflower / Herbaceous perennial",
         "size": "Height: 24-36 in. / Width: 18-24 in.",
         "price": "1 gallon = 12.99",
