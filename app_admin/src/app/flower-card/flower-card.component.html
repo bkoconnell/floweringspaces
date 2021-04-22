@@ -1,3 +1,4 @@
+<!-- flower card -->
 <div class="card ml-4" style="width: 18rem;">
   <div class="card-header">{{ flower.name }}</div>
   <img src="assets/images/{{ flower.image }}" alt="flower thumbnail" class="card-img-top">
@@ -6,5 +7,10 @@
       <p class="card-subtitle mt-3 mb-3 text-muted"> {{flower.size}} </p>
       <p class="card-subtitle mt-3 mb-3 text-muted">Price: {{ flower.price }} dollars </p>
       <p class="card-text" [innerHTML]="flower.description"></p>
+
+      <!-- 'Edit' button (to edit flower) -->
+      <div>
+        <button (click)="editFlower(flower)" class="btn btn-info">Edit</button>
+      </div>
   </div>
 </div>

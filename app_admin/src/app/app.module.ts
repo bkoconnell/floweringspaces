@@ -10,6 +10,7 @@ import { FlowerListingComponent } from './flower-listing/flower-listing.componen
 import { FlowerCardComponent } from './flower-card/flower-card.component';
 import { FlowerDataService } from './services/flower-data.service';
 import { AddFlowerComponent } from './add-flower/add-flower.component';
+import { EditFlowerComponent } from './edit-flower/edit-flower.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AddFlowerComponent } from './add-flower/add-flower.component';
     AppComponent,
     FlowerListingComponent,
     FlowerCardComponent,
-    AddFlowerComponent
+    AddFlowerComponent,
+    EditFlowerComponent
   ],
   imports: [
     BrowserModule,

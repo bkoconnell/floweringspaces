@@ -20,10 +20,10 @@ import { FlowerDataService } from '../services/flower-data.service';
 
 export class AddFlowerComponent implements OnInit {
 
-  addForm: FormGroup; // to track value & validity state of a group of FormControl instances
+  addForm: FormGroup; // an 'Add Form'
   submitted = false;  // set Boolean
 
-  // constructor: define parameters to inject an instance within this class
+  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -54,7 +54,7 @@ export class AddFlowerComponent implements OnInit {
       this.flowerService.addFlower(this.addForm.value)
         .then(data => {
           console.log(data);          // send data to console
-          this.router.navigate(['']); // router navigation
+          this.router.navigate(['']); // router navigates to default path
         });
     }
   }

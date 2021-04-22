@@ -13,7 +13,8 @@ router
 // flowersCode router 
 router
     .route('/flowers/:flowerCode')  // pass parameter --> "flowerCode"
-    .get(flowersController.flowersFindCode);
+    .get(flowersController.flowersFindCode)
+    .put(flowersController.flowersUpdateFlower);
 
 
 // export router

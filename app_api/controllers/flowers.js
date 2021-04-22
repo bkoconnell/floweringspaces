@@ -6,7 +6,7 @@ const Flowers = mongoose.model('flowers'); // bring in flowers schema
 // GET: /flowers - lists all the flowers
 const flowersList = async (req, res) => {
     Flowers
-        .find({}) // mongoose function: find (empty filter to find all instances)
+        .find({}) // mongoose method: find (empty filter to find all instances)
         .exec((err, flowers) => { // execute callback
             if (!flowers) {
                 return res
@@ -27,7 +27,7 @@ const flowersList = async (req, res) => {
 // GET: /flowers/:flowerCode - returns a single flower
 const flowersFindCode = async (req, res) => {
     Flowers
-        .find({ 'code': req.params.flowerCode }) // mongoose function: find by passing code from request parameter
+        .find({ 'code': req.params.flowerCode }) // mongoose method: find by passing code from request parameter
         .exec((err, flower) => { // execute callback
             if (!flower) {
                 return res
@@ -48,7 +48,7 @@ const flowersFindCode = async (req, res) => {
 // POST: /flowers    --  post form / add flower
 const flowersAddFlower = async (req, res) => {
     Flowers
-        .create({  // mongoose create w/ request body
+        .create({  // mongoose method to create w/ request-body-data passed in
             code: req.body.code,
             name: req.body.name,
             scientific: req.body.scientific,
@@ -71,10 +71,55 @@ const flowersAddFlower = async (req, res) => {
         });
 }
 
+// PUT: /flowers/:flowerCode    --  locate flower & update it
+const flowersUpdateFlower = async (req, res) => {
+
+    console.log(req.body);  // console output
+    
+    // search logic to find a match to update
+    Flowers
+        // mongoose method: search by code and update values with request-body-data passed in
+        .findOneAndUpdate({ 'code': req.params.flowerCode }, {
+            code: req.body.code,
+            name: req.body.name,
+            scientific: req.body.scientific,
+            type: req.body.type,
+            size: req.body.size,
+            price: req.body.price,
+            image: req.body.image,
+            description: req.body.description
+        }, { new: true })
+        .then(flower => {
+            // conditional statement for no match
+            if (!flower) {
+                return res
+                    .status(404)
+                    .send({
+                        message: "Flower not found with code " + req.params.flowerCode
+                    });
+            }
+            // if match is found, send update to database (request body data)
+            res.send(flower);
+            // error handling
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res
+                    .status(404)
+                    .send({
+                        message: "Flower not found with code " + req.params.flowerCode
+                    });
+            }
+            return res
+                .status(500) // server error
+                .json(err);
+        });
+}
+
 
 // export
 module.exports = {
     flowersList,
     flowersFindCode,
-    flowersAddFlower
+    flowersAddFlower,
+    flowersUpdateFlower
 };

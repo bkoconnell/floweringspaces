@@ -18,27 +18,27 @@ export class FlowerListingComponent implements OnInit {
 
   message: string; // declare message string
 
-  // constructor: define parameters to inject an instance within this class
+  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private flowerDataService: FlowerDataService,
     private router: Router
     ) { }
 
-  // method to add flowers
+  // private method to navigate to 'add flower' form (when 'add flower' button is clicked)
   private addFlower(): void {
     console.log('Inside FlowerListingComponent#addFlower'); // console output
-    this.router.navigate(['add-flower']); // use router to navigate to 'add-flower' route
+    this.router.navigate(['add-flower']); // router navigates to add-flower path
   }
 
-  // method to get flowers
+  // private method to get flowers array for rendering view
   private getFlowers(): void {
     console.log('Inside FlowerListingComponent#getFlowers'); // console output
     this.message = 'Searching for flowers';
-    // invoke service method getFlowers() to get flower array(s)
+    // invoke service method getFlowers() to get flower array
     this.flowerDataService
       .getFlowers()
         .then(foundFlowers => {
-          this.message = foundFlowers.length > 0 ? '' : 'No flowers found';
+          this.message = foundFlowers.length > 0 ? '' : 'No flowers found'; // message assignment based on flowers found or not
           this.flowers = foundFlowers;
         });
   }
