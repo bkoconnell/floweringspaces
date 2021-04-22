@@ -7,7 +7,8 @@ const flowersController = require('../controllers/flowers');
 // flowers router
 router
     .route('/flowers')
-    .get(flowersController.flowersList);
+    .get(flowersController.flowersList)
+    .post(flowersController.flowersAddFlower);
 
 // flowersCode router 
 router

@@ -45,9 +45,36 @@ const flowersFindCode = async (req, res) => {
         });
 };
 
+// POST: /flowers    --  post form / add flower
+const flowersAddFlower = async (req, res) => {
+    Flowers
+        .create({  // mongoose create w/ request body
+            code: req.body.code,
+            name: req.body.name,
+            scientific: req.body.scientific,
+            type: req.body.type,
+            size: req.body.size,
+            price: req.body.price,
+            image: req.body.image,
+            description: req.body.description
+        },
+        (err, flower) => {
+            if (err) {
+                return res
+                    .status(400) // bad request, invalid content
+                    .json(err);
+            }else{
+                return res
+                    .status(201) // created successfully
+                    .json(flower);
+            }
+        });
+}
+
 
 // export
 module.exports = {
     flowersList,
-    flowersFindCode
+    flowersFindCode,
+    flowersAddFlower
 };
