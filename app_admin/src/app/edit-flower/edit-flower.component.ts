@@ -27,8 +27,8 @@ export class EditFlowerComponent implements OnInit {
     // retrieve stashed flowerId
     let flowerCode = localStorage.getItem("flowerCode");
     if (!flowerCode) {
-      // FIXME: replace with appropriate error message (current message for demo purposes only)
-      alert("Something wrong, couldn't find where I stashed flowerCode!");
+      // cannot locate flower code
+      alert("Failed to retrieve flowerCode from local browser storage. Navigating back to default page.");
       this.router.navigate(['']); // router navigates to default path
       return;
     }

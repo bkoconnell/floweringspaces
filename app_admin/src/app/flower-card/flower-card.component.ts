@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 // import models
 import { Flower } from '../models/flower';
+import { FlowerDataService } from '../services/flower-data.service';
 
 @Component({
   selector: 'app-flower-card',
@@ -15,7 +16,8 @@ export class FlowerCardComponent implements OnInit {
 
   // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
-    private router: Router
+    private router: Router,
+    private flowerService: FlowerDataService
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class FlowerCardComponent implements OnInit {
     localStorage.removeItem("flowerCode");
     localStorage.setItem("flowerCode", flower.code);
     this.router.navigate(['edit-flower']);  // router navigates to edit-flower path
-  }  
+  }
 
   // method to invoke deleteFlower service
   private deleteFlower(flower: Flower): void {
@@ -35,5 +37,5 @@ export class FlowerCardComponent implements OnInit {
     localStorage.removeItem("flowerCode");
     localStorage.setItem("flowerCode", flower.code);
     this.router.navigate(['delete-flower']);  // router navigates to delete-flower path
-  }  
+  }
 }
