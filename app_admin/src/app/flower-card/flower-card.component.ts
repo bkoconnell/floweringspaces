@@ -35,17 +35,20 @@ export class FlowerCardComponent implements OnInit {
 
   // method for delete-flower button
   private deleteFlower(flower: Flower): void {
+    // stash the flower code in browser's local storage for the 'delete component' to retrieve later
+    localStorage.removeItem("deleteFlowerCode");
+    localStorage.setItem("deleteFlowerCode", flower.code);
+    // browser console output
+    console.log('Initiating DELETE request...');
 
-    console.log('YOU CLICKED DELETE BUTTON');
-
-    // invoke deleteFlower method
+    // invoke deleteFlower method from flower data service
     this.flowerService.deleteFlower(this.flower.code)
       .then(res => {
-        // debugging
-        console.log(res);
-        console.log('DELETED ???');  
+        // debugging output to browser console
+        console.log('Delete request successful if API response is null...');
+        console.log('API response: ' + res);
 
-        this.router.navigate(['delete-flower']); // router navigates to ____
+        this.router.navigate(['delete-flower']); // router navigates to delete-flower path
       });
   }
 }
