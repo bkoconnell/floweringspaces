@@ -1,7 +1,7 @@
 // import Angular modules
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-// import models
+// import models & services
 import { Flower } from '../models/flower';
 import { FlowerDataService } from '../services/flower-data.service';
 
@@ -40,15 +40,14 @@ export class FlowerCardComponent implements OnInit {
     localStorage.setItem("deleteFlowerCode", flower.code);
     // browser console output
     console.log('Initiating DELETE request...');
-
     // invoke deleteFlower method from flower data service
     this.flowerService.deleteFlower(this.flower.code)
       .then(res => {
         // debugging output to browser console
         console.log('Delete request successful if API response is null...');
         console.log('API response: ' + res);
-
-        this.router.navigate(['delete-flower']); // router navigates to delete-flower path
+        // router navigates to delete-flower path
+        this.router.navigate(['delete-flower']);
       });
   }
 }
