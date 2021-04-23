@@ -25,7 +25,7 @@ export class EditFlowerComponent implements OnInit {
 
   ngOnInit() {
     // retrieve stashed flowerId
-    let flowerCode = localStorage.getItem("flowerCode");
+    let flowerCode = localStorage.getItem("editFlowerCode");
     if (!flowerCode) {
       // cannot locate flower code
       alert("Failed to retrieve flowerCode from local browser storage. Navigating back to default page.");

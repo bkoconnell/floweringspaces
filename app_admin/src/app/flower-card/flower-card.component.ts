@@ -14,6 +14,8 @@ export class FlowerCardComponent implements OnInit {
 
   @Input('flower') flower: Flower;
 
+  submitted = false;   // set Boolean for Delete button
+
   // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private router: Router,
@@ -23,19 +25,27 @@ export class FlowerCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  // method for edit-flower navigation
+  // method for edit-flower button navigation
   private editFlower(flower: Flower): void {
     // stash the flower code in browser's local storage for the 'edit component' to retrieve later
-    localStorage.removeItem("flowerCode");
-    localStorage.setItem("flowerCode", flower.code);
+    localStorage.removeItem("editFlowerCode");
+    localStorage.setItem("editFlowerCode", flower.code);
     this.router.navigate(['edit-flower']);  // router navigates to edit-flower path
   }
 
-  // method to invoke deleteFlower service
+  // method for delete-flower button
   private deleteFlower(flower: Flower): void {
-    // stash the flower code in browser's local storage for the 'delete component' to retrieve later
-    localStorage.removeItem("flowerCode");
-    localStorage.setItem("flowerCode", flower.code);
-    this.router.navigate(['delete-flower']);  // router navigates to delete-flower path
+
+    console.log('YOU CLICKED DELETE BUTTON');
+
+    // invoke deleteFlower method
+    this.flowerService.deleteFlower(this.flower.code)
+      .then(res => {
+        // debugging
+        console.log(res);
+        console.log('DELETED ???');  
+
+        this.router.navigate(['delete-flower']); // router navigates to ____
+      });
   }
 }
