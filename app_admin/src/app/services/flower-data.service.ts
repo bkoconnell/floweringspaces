@@ -75,14 +75,14 @@ export class FlowerDataService {
 
   // FIXME:  Add Delete method (comments for response: Null)
   // method to delete a flower
-  public deleteFlower(flowerCode: string): Promise<any> {
+  public deleteFlower(flowerCode: string): Promise<Flower> {
     // browser console output
     console.log('Inside FlowerDataService#deleteFlower');
     // logic for HTTP request call & API response handling
     return this.http
       .delete(this.flowerUrl + flowerCode)           // DELETE call to API w/ URL parameter (flower code)
       .toPromise()                                   // Convert observable response to a promise
-      .then(response => response.json() as null)     // Set promise response to single instance for return ()
+      .then(response => response.json() as Flower[]) // Set promise response to single instance for return ()
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
