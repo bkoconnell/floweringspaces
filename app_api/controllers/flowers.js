@@ -23,7 +23,7 @@ const flowersList = async (req, res) => {
         // execute the method & pass a callback function w/ 2 parameters: error object & instance of found document
         .exec((err, flowers) => {
             // output to server console
-            console.log('Executing callback function...');
+            console.log('Executing callback function for GET /flowers...');
             // no data found
             if (!flowers) {
                 // return response to requester
@@ -51,7 +51,7 @@ const flowersList = async (req, res) => {
 };
 
 /**
- * Method for GET: /flowers/:flowerCode
+ * Method for GET /flowers/:flowerCode
  * returns a single flower based on request parameter (flower code) passed in
  * @param {*} req 
  * @param {*} res 
@@ -65,7 +65,7 @@ const flowersFindCode = async (req, res) => {
         // execute the method & pass a callback function w/ 2 parameters: error object & instance of found document
         .exec((err, flower) => {
             // output to server console
-            console.log('Executing callback function...');
+            console.log('Executing callback function for GET /flowers/:flowerCode...');
             // no matching document found
             if (!flower) {
                 // return response to requester
@@ -92,7 +92,7 @@ const flowersFindCode = async (req, res) => {
 
 
 /**
- * Method for POST: /flowers
+ * Method for POST /flowers
  * adds new data (flower) to collection based on request body (form data) passed in
  * @param {*} req 
  * @param {*} res 
@@ -116,7 +116,7 @@ const flowersAddFlower = async (req, res) => {
             // pass a callback function w/ 2 parameters: error object & instance of document added
             (err, flower) => {
                 // output to server console
-                console.log('Executing callback function...');
+                console.log('Executing callback function for POST /flowers...');
                 // bad request, invalid content
                 if (err) {
                     // return response to requester
@@ -137,7 +137,7 @@ const flowersAddFlower = async (req, res) => {
 
 
 /**
- * Method for PUT: /flowers/:flowerCode
+ * Method for PUT /flowers/:flowerCode
  * locate existing flower document based on request parameter (flower code) passed in
  * then update the document with the request-body values passed in
  * @param {*} req 
@@ -171,7 +171,7 @@ const flowersUpdateFlower = async (req, res) => {
         // pass callback w/ parameter: instance of updated document
         .then(flower => {
             // output to server console
-            console.log('Executing callback function...');
+            console.log('Executing callback function for PUT /flowers/:flowerCode...');
             // no matching document found
             if (!flower) {
                 // return response to requester
@@ -209,7 +209,7 @@ const flowersUpdateFlower = async (req, res) => {
 
 
 /**
- * Method for DELETE: /flowers/:flowerCode
+ * Method for DELETE /flowers/:flowerCode
  * locate existing flower document based on request parameter (flower code) passed in
  * then remove the document from the database collection
  * @param {*} req 
@@ -229,7 +229,7 @@ const flowersDeleteFlower = async (req, res) => {
             // execute the method & pass a callback function w/ parameters: error object
             .exec((err, flower) => {
                 // output to server console
-                console.log('Executing callback function...');
+                console.log('Executing callback function for DELETE /flowers/:flowerCode...');
                 // bad request, invalid content
                 if (err) {
                     // return response to requester

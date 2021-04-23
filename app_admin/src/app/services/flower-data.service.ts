@@ -18,7 +18,7 @@ export class FlowerDataService {
   // define constructor parameters (to inject an instance when class is instantiated)
   constructor(private http: Http) { }
 
-  // URL's for API and Endpoints
+  // Build URL's for API and Endpoints
   private apiBaseUrl = 'http://localhost:3000/api/'; // API
   private flowerUrl = `${this.apiBaseUrl}flowers/`;  // API Endpoint (flowers collection)
 
@@ -26,11 +26,11 @@ export class FlowerDataService {
   public addFlower(formData: Flower): Promise<Flower> {
     // console output
     console.log('Inside FlowerDataService#addFlower');
-    // return logic
-    return this.http                                 // Use http module for .post() method below:
-      .post(this.flowerUrl, formData)                // Send POST request to API endpoint
-      .toPromise()                                   // Convert observable to promise
-      .then(response => response.json() as Flower[]) // Success handler: return promise value (response: new data object as seen in db)
+    // HTTP request & API response
+    return this.http
+      .post(this.flowerUrl, formData)                // POST call to API endpoint, pass form data as request body
+      .toPromise()                                   // Convert observable response to a promise
+      .then(response => response.json() as Flower[]) // Success handler: return the promise response (new data object as seen in db)
       .catch(this.handleError);                      // or, Error handler (invoke handleError method)
   }
 
@@ -38,11 +38,11 @@ export class FlowerDataService {
   public getFlower(flowerCode: string): Promise<Flower> {
     // console output
     console.log('Inside FlowerDataService#getFlower(flowerCode)');
-    // return logic
-    return this.http                               // Use http module for .get()
-      .get(this.flowerUrl + flowerCode)            // Send GET request to API endpoint, pass flower code
-      .toPromise()                                 // Convert observable to promise
-      .then(response => response.json() as Flower) // Success handler: return promise value (response: data object answering the request)
+    // HTTP request & API response
+    return this.http
+      .get(this.flowerUrl + flowerCode)            // GET call to API endpoint w/ flower code parameter
+      .toPromise()                                 // Convert observable response to a promise
+      .then(response => response.json() as Flower) // Success handler: return the promise response (data object answering the request)
       .catch(this.handleError);                    // or, Error handler (invoke handleError method)
   }
 
@@ -50,11 +50,11 @@ export class FlowerDataService {
   public getFlowers(): Promise<Flower[]> {
     // console output
     console.log('Inside FlowerDataService#getFlowers');
-    // return logic
-    return this.http                                 // Use http module for .get()
-      .get(this.flowerUrl)                           // Send GET request to API endpoint (for all collection documents)
-      .toPromise()                                   // Convert observable to promise
-      .then(response => response.json() as Flower[]) // Success handler: return promise value (response: data object answering the request)
+    // HTTP request & API response
+    return this.http
+      .get(this.flowerUrl)                           // GET call to API endpoint
+      .toPromise()                                   // Convert observable response to a promise
+      .then(response => response.json() as Flower[]) // Success handler: return the promise response (data object answering the request)
       .catch(this.handleError);                      // or, Error handler (invoke handleError method)
   }
 
@@ -62,12 +62,12 @@ export class FlowerDataService {
   public updateFlower(formData: Flower): Promise<Flower> {
     // console output
     console.log('Inside FlowerDataService#upateFlower');
-    console.log(formData); // dump form data to console for dev. purposes
-    // return logic
-    return this.http                                 // Use http module for .put()
-      .put(this.flowerUrl + formData.code, formData) // Send PUT request to API endpoint w/ object data, pass flower code
-      .toPromise()                                   // Convert observable to promise
-      .then(response => response.json() as Flower[]) // Success handler: return promise value (response: updated data object as seen in the db)
+    console.log(formData); // dump form data to console (debugging)
+    // HTTP request & API response
+    return this.http
+      .put(this.flowerUrl + formData.code, formData) // PUT call to API endpoint w/ object data, pass flower code
+      .toPromise()                                   // Convert observable response to a promise
+      .then(response => response.json() as Flower[]) // Success handler: return the promise response (updated data object as seen in the db)
       .catch(this.handleError);                      // or, Error handler (invoke handleError method)
   }
 
@@ -77,9 +77,9 @@ export class FlowerDataService {
 
   // method to handle error
   private handleError(error: any): Promise<any> {
-    // output to browser console for rejected API request
+    // browser console output for rejected API request
     console.error('REQUEST FAILED: ', error);
-    // return response to component
+    // return response to requester
     return Promise.reject(error.message || error);
   }
 }
