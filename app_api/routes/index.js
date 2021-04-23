@@ -1,21 +1,22 @@
 // dependencies
 const express = require('express');
-const router = express.Router(); // import Router() function
 const flowersController = require('../controllers/flowers');
+// assign router function
+const router = express.Router();
 
 
-// flowers router
+/* Flowers Router */
 router
     .route('/flowers')
     .get(flowersController.flowersList)
     .post(flowersController.flowersAddFlower);
 
-// flowersCode router 
-router
-    .route('/flowers/:flowerCode')  // pass parameter --> "flowerCode"
+router // for parameter --> "flowerCode"
+    .route('/flowers/:flowerCode')  
     .get(flowersController.flowersFindCode)
-    .put(flowersController.flowersUpdateFlower);
+    .put(flowersController.flowersUpdateFlower)
+    .delete(flowersController.flowersDeleteFlower);
 
 
-// export router
+// export routers
 module.exports = router;
