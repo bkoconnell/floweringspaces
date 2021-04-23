@@ -29,5 +29,11 @@ export class FlowerCardComponent implements OnInit {
     this.router.navigate(['edit-flower']);  // router navigates to edit-flower path
   }  
 
-  
+  // method to invoke deleteFlower service
+  private deleteFlower(flower: Flower): void {
+    // stash the flower code in browser's local storage for the 'delete component' to retrieve later
+    localStorage.removeItem("flowerCode");
+    localStorage.setItem("flowerCode", flower.code);
+    this.router.navigate(['delete-flower']);  // router navigates to delete-flower path
+  }  
 }
