@@ -11,7 +11,7 @@ router
     .get(flowersController.flowersList)
     .post(flowersController.flowersAddFlower);
 
-router // for parameter --> "flowerCode"
+router // URL parameter --> "flowerCode"
     .route('/flowers/:flowerCode')  
     .get(flowersController.flowersFindCode)
     .put(flowersController.flowersUpdateFlower)
