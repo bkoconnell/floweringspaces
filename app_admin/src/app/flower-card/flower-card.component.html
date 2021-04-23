@@ -8,9 +8,14 @@
       <p class="card-subtitle mt-3 mb-3 text-muted">Price: {{ flower.price }} dollars </p>
       <p class="card-text" [innerHTML]="flower.description"></p>
 
-      <!-- 'Edit' button (to edit flower) -->
+      <!-- Card Buttons -->
       <div>
-        <button (click)="editFlower(flower)" class="btn btn-info">Edit</button>
+        <!-- 'Edit' button (to edit flower) -->
+        <button (click)="editFlower(flower)" class="btn btn-info">Edit</button>        
+      </div>
+      <div>
+        <!-- 'Delete' button (to delete flower) -->
+        <button (click)="deleteFlower(flower)" class="btn btn-info">Delete</button>
       </div>
   </div>
 </div>

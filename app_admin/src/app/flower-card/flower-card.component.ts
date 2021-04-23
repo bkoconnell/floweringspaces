@@ -21,11 +21,13 @@ export class FlowerCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  // method to edit flower
+  // method for edit-flower navigation
   private editFlower(flower: Flower): void {
     // stash the flower code in browser's local storage for the 'edit component' to retrieve later
     localStorage.removeItem("flowerCode");
     localStorage.setItem("flowerCode", flower.code);
     this.router.navigate(['edit-flower']);  // router navigates to edit-flower path
   }  
+
+  
 }
