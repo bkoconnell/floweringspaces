@@ -25,7 +25,7 @@ export class FlowerDataService {
 
   // method to add a flower to database through API
   public addFlower(formData: Flower): Promise<Flower> {
-    // console output
+    // browser console output
     console.log('Inside FlowerDataService#addFlower');
     // logic for HTTP request call & API response handling
     return this.http
@@ -37,7 +37,7 @@ export class FlowerDataService {
 
   // method to get a single flower
   public getFlower(flowerCode: string): Promise<Flower> {
-    // console output
+    // browser console output
     console.log('Inside FlowerDataService#getFlower(flowerCode)');
     // logic for HTTP request call & API response handling
     return this.http
@@ -49,7 +49,7 @@ export class FlowerDataService {
 
   // method to return an array of flowers
   public getFlowers(): Promise<Flower[]> {
-    // console output
+    // browser console output
     console.log('Inside FlowerDataService#getFlowers');
     // logic for HTTP request call & API response handling
     return this.http
@@ -61,9 +61,9 @@ export class FlowerDataService {
 
   // method to update a flower
   public updateFlower(formData: Flower): Promise<Flower> {
-    // console output
+    // browser console output
     console.log('Inside FlowerDataService#updateFlower');
-    console.log(formData); // dump form data to console (debugging)
+    console.log(formData); // dump form data to browser console (debugging)
     // logic for HTTP request call & API response handling
     return this.http
       .put(this.flowerUrl + formData.code, formData) // PUT call to API w/ URL parameter (flower code) & request body (form data)
@@ -76,7 +76,7 @@ export class FlowerDataService {
   // FIXME:  Add Delete method (comments for response: Null)
   // method to delete a flower
   public deleteFlower(flowerCode: string): Promise<any> {
-    // console output
+    // browser console output
     console.log('Inside FlowerDataService#deleteFlower');
     // logic for HTTP request call & API response handling
     return this.http

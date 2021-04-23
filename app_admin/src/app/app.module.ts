@@ -11,6 +11,7 @@ import { FlowerCardComponent } from './flower-card/flower-card.component';
 import { FlowerDataService } from './services/flower-data.service';
 import { AddFlowerComponent } from './add-flower/add-flower.component';
 import { EditFlowerComponent } from './edit-flower/edit-flower.component';
+import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EditFlowerComponent } from './edit-flower/edit-flower.component';
     FlowerListingComponent,
     FlowerCardComponent,
     AddFlowerComponent,
-    EditFlowerComponent
+    EditFlowerComponent,
+    DeleteFlowerComponent
   ],
   imports: [
     BrowserModule,
