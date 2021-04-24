@@ -66,9 +66,6 @@ const flowersFindCode = async (req, res) => {
         .exec((err, flower) => {
             // output to server console
             console.log('Executing callback function for GET /flowers/:flowerCode...');
-            // debug
-            console.log('Your flower code is ... ' + req.params.flowerCode);
-            console.log(typeof req.params.flowerCode);
             // no matching document found
             if (!flower) {
                 // return response to requester
@@ -77,14 +74,16 @@ const flowersFindCode = async (req, res) => {
                     .json({      // message response
                         "message": "flower not found"
                     });
-                // bad request, invalid content
-            } else if (err) {
+            }
+            // bad request, invalid content
+            else if (err) {
                 // return response to requester
                 return res
                     .status(400) // http status code (bad request)
                     .json(err);  // error response
-                // request successful
-            } else {
+            }
+            // request successful
+            else {
                 // return response to requester
                 return res
                     .status(200)   // http status code (OK - success)
@@ -225,100 +224,52 @@ const flowersUpdateFlower = async (req, res) => {
 const flowersDeleteFlower = async (req, res) => {
     // destructure assignment to extract request parameter 'flowerCode'
     const { flowerCode } = req.params;
-    // const flowerCode = req.params.flowerCode;
-    // debugging
-    console.log(req.params.flowerCode);
-    // flowerCode document is found
-    // if (req.params.flowerCode) {
-        // model instance
-        Flowers
-            // apply the mongoose method to the model & define the method's query:
-            // Read matching document & Delete from database collection
-            .findOneAndDelete(
-                // filter query by flower code from request
-                { 'code': flowerCode }
-            )
-            .then(flower => {
-                // output to server console
-                console.log('Executing callback function for DELETE /flowers/:flowerCode...');
-                // no matching document found
-                if (!flower) {
-                    // return response to requester
-                    return res
-                        .status(404) // http status code (not found)
-                        .send({      // send message response
-                            message: "No flower found in database for code " + flowerCode
-                        });
-                }
-                // debugging
-                console.log('SUCCESS??');
-                console.log(flower);
-
-                // request successful (document found & deleted)
-                // response to requester                
-                res
-                    .status(204)   // http status code (OK - success)
-                    .send(flower); // data response (send updated document)
-            })
-            // error handling callback w/ parameter: error object
-            .catch(err => {
-                // output to server console
-                console.log('Executing ERROR callback function inside flowersDeleteFlower()...');
-                // no matching document found
-                if (err.kind === 'ObjectId') {
-                    // return response to requester
-                    return res
-                        .status(404)  // http status code (not found)
-                        .send({       // send message response
-                            message: "No documents found in database for code " + flowerCode
-                        });
-                }
-                // server error
+    // model instance
+    Flowers
+        // apply the mongoose method to the model & define the method's query:
+        // Read matching document & Delete from database collection
+        .findOneAndDelete(
+            // filter query by flower code from request
+            { 'code': flowerCode }
+        )
+        // pass callback w/ parameter: instance of document found
+        .then(flower => {
+            // output to server console
+            console.log('Executing callback function for DELETE /flowers/:flowerCode...');
+            // no matching document found
+            if (!flower) {
                 // return response to requester
                 return res
-                    .status(500) // internal server error
-                    .json(err);  // error response
-            });
-            
-            
-                    
-//             .findByIdAndRemove(req.params.flowerCode)
-//             // execute the method & pass a callback function w/ parameters: error object
-//             .exec((err, flower) => {
-//                 // output to server console
-//                 console.log('Executing callback function for DELETE /flowers/:flowerCode...');
-//                 // bad request, invalid content
-//                 if (err) {
-//                     // debug
-//                     console.log(flowerCode + ' is BROKEN');
-//                     console.log(typeof flowerCode);
-//                     console.log(req.params.flowerCode + ' is req.params.BROKEN');
-//                     console.log(typeof req.params.flowerCode);
-//                     // return response to requester
-//                     return res
-//                         .status(400) // http status code (error)
-//                         .json(err);  // error response
-//                 }
-//                 // debug
-//                 console.log(req.params.flowerCode + ' WORKS me thinks');
-//                 // request successful
-//                 // response to requester
-//                 res
-//                     .status(204)
-//                     .json(null);
-//             });
-//     }
-//     // no document found
-//     else {
-//         // output to server console
-//         console.log('No matching documents in database collection for code ' + flowerCode);
-//         // response to requester
-//         res
-//             .status(404) // http status code (not found)
-//             .json({      // message response
-//                 "message": "No Flower found"
-//             });
-//     }
+                    .status(404) // http status code (not found)
+                    .send({      // send message response
+                        message: "No flower found in database for code " + flowerCode
+                    });
+            }
+            // request successful (document found & deleted)
+            // response to requester                
+            res
+                .status(204)   // http status code (OK - success)
+                .send(flower); // data response (send document)
+        })
+        // error handling callback w/ parameter: error object
+        .catch(err => {
+            // output to server console
+            console.log('Executing ERROR callback function inside flowersDeleteFlower()...');
+            // no matching document found
+            if (err.kind === 'ObjectId') {
+                // return response to requester
+                return res
+                    .status(404)  // http status code (not found)
+                    .send({       // send message response
+                        message: "No documents found in database for code " + flowerCode
+                    });
+            }
+            // server error
+            // return response to requester
+            return res
+                .status(500) // internal server error
+                .json(err);  // error response
+        });
 }
 
 
