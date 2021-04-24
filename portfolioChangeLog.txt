@@ -6,7 +6,7 @@ Change Log for Portfolio Submission
     --added additional pages (no content)
         --routers & controllers
         --update app.js
-        --hbs navigation / partials  
+        --hbs navigation / partials
     --refactored app_server routing
         -- consolidated all server routers to index.js
         -- updated app.js to reflect router changes
@@ -21,3 +21,4 @@ Change Log for Portfolio Submission
     --redesigned homepage
         -- swapped in partials
         -- changed text & links
+        -- changed pictures, logo, etc.

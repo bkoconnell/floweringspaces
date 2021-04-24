@@ -27,21 +27,12 @@ hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // r
 // for inspiring this handlebars helper solution for navigation selection in partials:
 hbs.registerHelper('ifequal', function (lvalue, rvalue, options) {
   if (rvalue === undefined) {
-    console.log('undefined:');
-    console.log(lvalue);
-    console.log(rvalue);
     return;
   } 
   else if (lvalue != rvalue) {
-    console.log('NOT EQUAL:');
-    console.log(lvalue);
-    console.log(rvalue);
     return options.inverse(this);
   } 
   else {
-    console.log('Equal!:');
-    console.log(lvalue);
-    console.log(rvalue);
     return options.fn(this);
   }
 });
