@@ -1,4 +1,6 @@
 
+/* Nursery Controller */
+
 // create request object for request dependency
 const request = require('request');
 // create apiOptions object with 1 property: the server URL
@@ -38,7 +40,7 @@ const renderNurseryList = (req, res, responseBody) => { // method to render Nurs
 const nurseryList = (req, res) => {
     const path = '/api/flowers'; // points to REST API location
     const requestOptions = {    // request options (url, method, & json body)
-        url: `${apiOptions.server}${path}`, // using `back ticks` will parse & resolve the contents within
+        url: `${apiOptions.server}${path}`, // using `back ticks` will parse & resolve the contents of the URL
         method: 'GET',
         json: {},
     };
