@@ -1,25 +1,25 @@
 <div id="footer">
     <div>
         <ul class="navigation">
-            <li>
-                <a href="../index.hbs">Home</a>
+            <li {{#ifequal title "Flowering Spaces - Home"}} class="active" {{/ifequal}} >
+                <a href="../">Home</a>
             </li>
-            <li class="active">
-                <a href="../nursery.hbs">Nursery</a>
+            <li {{#ifequal title "Flowering Spaces - Nursery"}} class="active" {{/ifequal}} >
+                <a href="../nursery">Nursery</a>
             </li>
-            <li>
-                <a href="../landscapes.hbs">Landscapes</a>
+            <li {{#ifequal title "Flowering Spaces - Landscapes"}} class="active" {{/ifequal}} >
+                <a href="../landscapes">Landscapes</a>
             </li>
-            <li>
+            <li {{#ifequal title "Flowering Spaces - Testimonials"}} class="active" {{/ifequal}} >
                 <a href="">Testimonials</a>
             </li>
-            <li>
+            <li {{#ifequal title "Flowering Spaces - Garden Blog"}} class="active" {{/ifequal}} >
                 <a href="">Garden Blog</a>
             </li>
-            <li>
+            <li {{#ifequal title "Flowering Spaces - About"}} class="active" {{/ifequal}} >
                 <a href="">About</a>
             </li>
-            <li>
+            <li {{#ifequal title "Flowering Spaces - Contact"}} class="active" {{/ifequal}} >
                 <a href="">Contact</a>
             </li>
         </ul>

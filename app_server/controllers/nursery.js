@@ -18,7 +18,7 @@ const renderNurseryList = (req, res, responseBody) => { // method to render Nurs
     // and then package description from package.json ... then add name of page at the end.
     let pageTitle = process.env.npm_package_description + ' - Nursery';
 */    
-    let pageTitle = 'Flowering Spaces - Nursery'; // temp page title
+    let pageTitle = 'Flowering Spaces - Nursery'; // temp browser page title
 
     // response body is not an array
     if (!(responseBody instanceof Array)) {
@@ -34,7 +34,7 @@ const renderNurseryList = (req, res, responseBody) => { // method to render Nurs
     // response body from API is array w/ flowers
     // render the response
     res.render('nursery', {
-        title: pageTitle,
+        title: pageTitle, // pass browser title
         flowers: responseBody, // pass array from API (response body) to 'flowers'
         message
     });

@@ -4,7 +4,9 @@ Change Log for Portfolio Submission
 
 *4/23/2021*
     -created landscapes HBS page on backend
+        -- partials
     -redesigned index HBS page
+        -- swapped in partials
     -refactored app_server routing
         -- consolidated all server routers to index.js
         -- updated app.js to reflect router changes
@@ -14,3 +16,7 @@ Change Log for Portfolio Submission
                 --added /landscapes (to indexRouter)
     --created controller for landscapes
     --fixed bug on HBS partials for index page link
+    --added HBS functionality for nav bar on backend server
+        --app.js ==> registered hbs helper "ifequal" w/ conditional function
+                        to use in header/footer partials (selected/active Links)
+    --

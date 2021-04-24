@@ -5,8 +5,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
+const { check } = require('express-validator');
+
 // trigger database connection and mongoose schema models to be loaded at application startup
 require('./app_api/models/db');
+
 // instantiate routers
 const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
@@ -20,7 +23,30 @@ const app = express();
 /* View Engine */
 app.set('views', path.join(__dirname, 'app_server', 'views'));  // setup view engine (set views to 'views' directory)
 hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // register handlebars partials (https://www.npmjs.com/package/hbs)
-app.set('view engine', 'hbs');  // set view engine to handlebars
+// Thanks to bendog @ http://doginthehat.com.au/2012/02/comparison-block-helper-for-handlebars-templates/
+// for inspiring this handlebars helper solution:
+hbs.registerHelper('ifequal', function (lvalue, rvalue, options) {
+  if (rvalue === undefined) {
+    console.log('undefined:');
+    console.log(lvalue);
+    console.log(rvalue);
+    return;
+  } 
+  else if (lvalue != rvalue) {
+    console.log('NOT EQUAL:');
+    console.log(lvalue);
+    console.log(rvalue);
+    return options.inverse(this);
+  } 
+  else {
+    console.log('Equal!:');
+    console.log(lvalue);
+    console.log(rvalue);
+    return options.fn(this);
+  }
+});
+// set view engine to handlebars
+app.set('view engine', 'hbs');
 
 
 /* use() functions */
@@ -46,12 +72,12 @@ app.use('/users', usersRouter); // send request for '/users' to the users router
 app.use('/api', apiRouter); // send request for '/api' to the api router
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
