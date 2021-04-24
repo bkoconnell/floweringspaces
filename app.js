@@ -7,10 +7,9 @@ const logger = require('morgan');
 const hbs = require('hbs');
 // trigger database connection and mongoose schema models to be loaded at application startup
 require('./app_api/models/db');
-// reference routers
+// instantiate routers
 const indexRouter = require('./app_server/routes/index');
 const usersRouter = require('./app_server/routes/users');
-const nurseryRouter = require('./app_server/routes/nursery');
 const apiRouter = require('./app_api/routes/index');
 
 
@@ -41,8 +40,9 @@ app.use('/api', (req, res, next) => {                                 // use API
 
 // use routers
 app.use('/', indexRouter); // send request for '/' to the index router
+app.use('/nursery', indexRouter); // send request for '/nursery' to the index router
+app.use('/landscapes', indexRouter); // send request for '/landscapes' to the index router
 app.use('/users', usersRouter); // send request for '/users' to the users router
-app.use('/nursery', nurseryRouter); // send request for '/nursery' to the nursery router
 app.use('/api', apiRouter); // send request for '/api' to the api router
 
 // catch 404 and forward to error handler

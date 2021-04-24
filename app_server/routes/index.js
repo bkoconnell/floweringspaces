@@ -1,22 +1,27 @@
 
-/* Index Router */
+/** 
+ * App Server Routers
+ */
 
-// dependencies
+
+// Dependencies
 const express = require('express');
 const router = express.Router(); // import Router() function
+// instantiate controllers
 const ctrlMain = require('../controllers/main');
+const ctrlNursery = require('../controllers/nursery');
+const ctrlLandscapes = require('../controllers/landscapes');
 
-/* GET home page from controller */
 
-// DEBUG
-console.log('Requesting main page');
-
+// index router
 router.get('/', ctrlMain.index);
 
-// DEBUG
-console.log('Request returned successfully to the router.');
+// nursery router
+router.get('/', ctrlNursery.nurseryList);
+
+// landscape router
+router.get('/', ctrlLandscapes.landscapes);
 
 
-
-// export
+// export router
 module.exports = router;
