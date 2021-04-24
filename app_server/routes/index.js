@@ -17,10 +17,10 @@ const ctrlLandscapes = require('../controllers/landscapes');
 router.get('/', ctrlMain.index);
 
 // nursery router
-router.get('/', ctrlNursery.nurseryList);
+router.get('/nursery', ctrlNursery.nurseryList);
 
-// landscape router
-router.get('/', ctrlLandscapes.landscapes);
+// landscapes router
+router.get('/landscapes', ctrlLandscapes.landscapes);
 
 
 // export router
