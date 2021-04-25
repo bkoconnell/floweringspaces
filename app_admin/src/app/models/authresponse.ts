@@ -1,5 +1,5 @@
 /**
- * Object to hold the Token value returned during login
+ * Object to hold the Login Response Token from Browser
  */
 
 export class Authresponse {

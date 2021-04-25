@@ -1,4 +1,8 @@
-// dependencies
+/**
+ * Delete Flower component
+ */
+
+// import Angular modules
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -24,7 +28,6 @@ export class DeleteFlowerComponent implements OnInit {
 
   // method for admin page button navigation
   private adminPage(): void {
-    // router navigates to default path   
     this.router.navigate(['']);
   }
 }

@@ -1,3 +1,7 @@
+/**
+ * Flower Listing component
+ */
+
 // import Angular modules
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
@@ -14,11 +18,9 @@ import { Flower } from '../models/flower';
 
 export class FlowerListingComponent implements OnInit {
 
-  flowers: Flower[]; // declare flowers array
+  flowers: Flower[];
+  message: string;
 
-  message: string; // declare message string
-
-  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private flowerDataService: FlowerDataService,
     private router: Router
@@ -26,19 +28,22 @@ export class FlowerListingComponent implements OnInit {
 
   // private method to navigate to 'add flower' form (when 'add flower' button is clicked)
   private addFlower(): void {
-    console.log('Inside FlowerListingComponent#addFlower'); // console output
-    this.router.navigate(['add-flower']); // router navigates to add-flower path
+    // browser console output
+    console.log('Inside FlowerListingComponent#addFlower');
+    this.router.navigate(['add-flower']);
   }
 
   // private method to get flowers array for rendering view
   private getFlowers(): void {
-    console.log('Inside FlowerListingComponent#getFlowers'); // console output
+    // browser console output
+    console.log('Inside FlowerListingComponent#getFlowers');
     this.message = 'Searching for flowers';
     // invoke service method getFlowers() to get flower array
     this.flowerDataService
       .getFlowers()
         .then(foundFlowers => {
-          this.message = foundFlowers.length > 0 ? '' : 'No flowers found'; // message assignment based on flowers found or not
+          // message assigned based on if flowers are found or not found
+          this.message = foundFlowers.length > 0 ? '' : 'No flowers found';
           this.flowers = foundFlowers;
         });
   }

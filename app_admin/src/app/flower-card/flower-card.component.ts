@@ -1,3 +1,7 @@
+/**
+ * Flower Card component
+ */
+
 // import Angular modules
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,7 +20,6 @@ export class FlowerCardComponent implements OnInit {
 
   submitted = false;   // set Boolean for Delete button
 
-  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private router: Router,
     private flowerService: FlowerDataService
@@ -30,7 +33,8 @@ export class FlowerCardComponent implements OnInit {
     // stash the flower code in browser's local storage for the 'edit component' to retrieve later
     localStorage.removeItem("editFlowerCode");
     localStorage.setItem("editFlowerCode", flower.code);
-    this.router.navigate(['edit-flower']);  // router navigates to edit-flower path
+    // navigate
+    this.router.navigate(['edit-flower']);
   }
 
   // method for delete-flower button
@@ -43,10 +47,10 @@ export class FlowerCardComponent implements OnInit {
     // invoke deleteFlower method from flower data service
     this.flowerService.deleteFlower(this.flower.code)
       .then(res => {
-        // debugging output to browser console
+        // output to browser console (debugging)
         console.log('Delete request successful if API response is null...');
         console.log('API response: ' + res);
-        // router navigates to delete-flower path
+        // navigate
         this.router.navigate(['delete-flower']);
       });
   }

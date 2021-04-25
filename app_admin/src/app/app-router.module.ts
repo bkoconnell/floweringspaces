@@ -1,3 +1,7 @@
+/**
+ * FrontEnd [client] Routers
+ */
+
 // import Angular modules
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,9 +13,9 @@ import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
 
 // define & map routes
 const routes: Routes = [
-    { path: 'add-flower', component: AddFlowerComponent},     // add-flower route
-    { path: 'edit-flower', component: EditFlowerComponent},   // edit-flower route
-    { path: 'delete-flower', component: DeleteFlowerComponent},   // delete-flower route
+    { path: 'add-flower', component: AddFlowerComponent},       // add-flower route
+    { path: 'edit-flower', component: EditFlowerComponent},     // edit-flower route
+    { path: 'delete-flower', component: DeleteFlowerComponent}, // delete-flower route
     // default path (when none is specified):
     { path: '', component: FlowerListingComponent, pathMatch: 'full' }
 ]

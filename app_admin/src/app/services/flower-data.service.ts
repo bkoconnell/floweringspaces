@@ -1,33 +1,44 @@
 /**
- * This is the frontend (client) service logic
- * for sending HTTP requests (method calls) to the REST API endpoint
- * and returning the API's response to the requester
+ * FrontEnd [client] Service Handler 
+ * for API calls to the Flowers db.collection
+ * 
+ * (facilitates sending HTTP calls to REST API enpoint
+ *  and returns the API's response back to the requester)
  */
 
 
 // import Angular modules
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 
-// import the model that defines a Flower instance in the JSON
+// import objects
 import { Flower } from '../models/flower';
+import { User } from '../models/user';
+import { Authresponse } from '../models/authresponse';
+import { BROWSER_STORAGE } from '../storage';
 
 
 @Injectable()
 export class FlowerDataService {
 
-  // define constructor parameters (to inject an instance when class is instantiated)
-  constructor(private http: Http) { }
+  // constructor: define parameters to inject an instance within this class
+  constructor(
+    private http: Http,
+    @Inject(BROWSER_STORAGE) private storage: Storage
+  ) { }
 
   // Build URL's for REST API and API Endpoint
   private apiBaseUrl = 'http://localhost:3000/api/'; // REST API
   private flowerUrl = `${this.apiBaseUrl}flowers/`;  // API Endpoint (flowers collection)
 
-  // method to add a flower to database through API
+  /**
+   * Method to send POST call to API
+   * (add a new flower to db.collection)
+   */
   public addFlower(formData: Flower): Promise<Flower> {
     // browser console output
     console.log('Inside FlowerDataService#addFlower');
-    // logic for HTTP request call & API response handling
+    // logic for HTTP request & API response handling
     return this.http
       .post(this.flowerUrl, formData)                // POST call to API w/ request body (form data)
       .toPromise()                                   // Convert observable response to a promise
@@ -35,11 +46,14 @@ export class FlowerDataService {
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
-  // method to get a single flower
+  /**
+   * Method to send GET call to API
+   * (read a single flower by code)
+   */
   public getFlower(flowerCode: string): Promise<Flower> {
     // browser console output
     console.log('Inside FlowerDataService#getFlower(flowerCode)');
-    // logic for HTTP request call & API response handling
+    // logic for HTTP call & API response handling
     return this.http
       .get(this.flowerUrl + flowerCode)            // GET call to API w/ URL parameter (flower code)
       .toPromise()                                 // Convert observable response to a promise
@@ -47,11 +61,14 @@ export class FlowerDataService {
       .catch(this.handleError);                    // Error handler (invoke handleError method)
   }
 
-  // method to return an array of flowers
+  /**
+   * Method to send GET call to API
+   * (read all flowers in db.collection)
+   */
   public getFlowers(): Promise<Flower[]> {
     // browser console output
     console.log('Inside FlowerDataService#getFlowers');
-    // logic for HTTP request call & API response handling
+    // logic for HTTP request & API response handling
     return this.http
       .get(this.flowerUrl)                           // GET call to API
       .toPromise()                                   // Convert observable response to a promise
@@ -59,12 +76,15 @@ export class FlowerDataService {
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
-  // method to update a flower
+  /**
+   * Method to send PUT call to API
+   * (update a single flower by code)
+   */
   public updateFlower(formData: Flower): Promise<Flower> {
     // browser console output
     console.log('Inside FlowerDataService#updateFlower');
     console.log(formData); // dump form data to browser console (debugging)
-    // logic for HTTP request call & API response handling
+    // logic for HTTP request & API response handling
     return this.http
       .put(this.flowerUrl + formData.code, formData) // PUT call to API w/ URL parameter (flower code) & request body (form data)
       .toPromise()                                   // Convert observable response to a promise
@@ -72,9 +92,10 @@ export class FlowerDataService {
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
-
-  // FIXME:  Add Delete method (comments for response: Null)
-  // method to delete a flower
+ /**
+  * Method to send DELETE call to API
+  * (delete a single flower by code)
+  */
   public deleteFlower(flowerCode: string): Promise<Flower> {
     // browser console output
     console.log('Inside FlowerDataService#deleteFlower');
@@ -86,8 +107,9 @@ export class FlowerDataService {
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
-
-  // method to handle error
+  /**
+   * Method to Handle Error Response from API
+   */
   private handleError(error: any): Promise<any> {
     // browser console output for rejected API request
     console.error('REQUEST FAILED: ', error);

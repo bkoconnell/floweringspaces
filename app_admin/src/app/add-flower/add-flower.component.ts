@@ -1,12 +1,17 @@
+/**
+ * Add Flower component
+ */
+
 // import Angular modules
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-/* Angular's 'forms' module allows code to access the data using "data binding":
-    The JavaScript variables are “bound” to the HTML form controls 
-    with Angular’s forms library taking care of moving data 
-    back and forth between the view (HTML) and the model (JavaScript).
-*/
+/**
+ * Angular's 'forms' module allows code to access the data using "data binding":
+ * The JavaScript variables are “bound” to the HTML form controls
+ * with Angular’s forms library taking care of moving data
+ * back and forth between the view (HTML) and the model (JavaScript).
+ */ 
 
 // import service
 import { FlowerDataService } from '../services/flower-data.service';
@@ -23,7 +28,6 @@ export class AddFlowerComponent implements OnInit {
   addForm: FormGroup; // an 'Add Form'
   submitted = false;  // set Boolean
 
-  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -53,8 +57,9 @@ export class AddFlowerComponent implements OnInit {
       // invoke addFlower method
       this.flowerService.addFlower(this.addForm.value)
         .then(data => {
-          console.log(data);          // send data to console
-          this.router.navigate(['']); // router navigates to default path
+          // output data to browser console
+          console.log(data);
+          this.router.navigate(['']);
         });
     }
   }

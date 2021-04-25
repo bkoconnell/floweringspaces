@@ -1,3 +1,7 @@
+/**
+ * Edit Flower component
+ */
+
 // import Angular modules
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,9 +18,8 @@ import { FlowerDataService } from '../services/flower-data.service';
 export class EditFlowerComponent implements OnInit {
 
   editForm: FormGroup; // an 'Edit Form'
-  submitted = false;   // set Boolean
+  submitted = false;   // set Boolean for submit button
 
-  // define constructor parameters (to inject an instance when class is instantiated)
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -24,15 +27,15 @@ export class EditFlowerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // retrieve stashed flowerId
+    // retrieve stashed flower code
     let flowerCode = localStorage.getItem("editFlowerCode");
     if (!flowerCode) {
       // cannot locate flower code
       alert("Failed to retrieve flowerCode from local browser storage. Navigating back to default page.");
-      this.router.navigate(['']); // router navigates to default path
+      this.router.navigate(['']);
       return;
     }
-    // console output for flower code found
+    // output to browser console
     console.log('EditFlowerComponent#onInit found flowerCode ' + flowerCode);
 
     // initialize edit form
@@ -47,7 +50,7 @@ export class EditFlowerComponent implements OnInit {
       image: ['', Validators.required],
       description: ['', Validators.required],
     })    
-    // console output to call getFlower()
+    // output to browser console
     console.log('EditFlowerComponent#onInit calling FlowerDataService#getFlower(\'' + flowerCode + '\')');
     
     /**
@@ -56,7 +59,7 @@ export class EditFlowerComponent implements OnInit {
      */
     this.flowerService.getFlower(flowerCode) // call getFlower() service method, pass flower code
       .then(data => {
-        // output data to console for dev. purposes
+        // output data to browser console
         console.log(data);      
         /**
          * NOTE: Don't use editForm.setValue() as it will throw console error.
@@ -65,6 +68,7 @@ export class EditFlowerComponent implements OnInit {
         this.editForm.patchValue(data[0]);
       })
   }
+
   // user submission function ('Save' button)
   onSubmit() {
     this.submitted = true;
@@ -73,10 +77,10 @@ export class EditFlowerComponent implements OnInit {
       // invoke updateFlower method
       this.flowerService.updateFlower(this.editForm.value)
         .then(data => {
-          console.log(data);          // output data to console for dev. purposes
-          this.router.navigate(['']); // router navigates to default path
+          // output data to browser console
+          console.log(data);
+          this.router.navigate(['']);
         });
     }
   }
-
 }
