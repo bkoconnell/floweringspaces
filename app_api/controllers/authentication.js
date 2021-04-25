@@ -9,7 +9,9 @@ const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 /**
- * Method for User Registration
+ * Method to Register New User
+ * /api/register
+ * requires: 
  */
 const register = (req, res) => {
     // bad request (missing credential inputs)
@@ -18,11 +20,11 @@ const register = (req, res) => {
             .status(400) // HTTP status code (bad request)
             .json({ "message": "All fields required" });
     }
-    // new user instance;  set email & password
+    // new user instance;  set name & email
     const user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
-    // set the salt & hash
+    // use password to set the salt & hash
     user.setPassword(req.body.password);
     // save new user to database
     user.save((err) => {
