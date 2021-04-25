@@ -3,16 +3,14 @@
  */
 
 
-// dependencies
+// Dependencies
 const mongoose = require('mongoose'); // .set('debug', true);
 const Flowers = mongoose.model('flowers'); // instantiate flowers schema
 
 
 /**
  * Method for GET /flowers
- * returns everything in the flowers collection
- * @param {*} req 
- * @param {*} res 
+ * [returns everything in the flowers collection]
  */
 const flowersList = async (req, res) => {
     // model instance
@@ -33,7 +31,7 @@ const flowersList = async (req, res) => {
                         "message": "flowers not found"
                     });
             }
-            // bad request, invalid content
+            // bad request, invalid syntax
             else if (err) {
                 // return response to requester
                 return res
@@ -52,9 +50,7 @@ const flowersList = async (req, res) => {
 
 /**
  * Method for GET /flowers/:flowerCode
- * returns a single flower based on URL parameter (flower code) passed in
- * @param {*} req 
- * @param {*} res 
+ * [returns a single flower based on URL parameter (flower code) passed in]
  */
 const flowersFindCode = async (req, res) => {
     // model instance
@@ -75,7 +71,7 @@ const flowersFindCode = async (req, res) => {
                         "message": "flower not found"
                     });
             }
-            // bad request, invalid content
+            // bad request, invalid syntax
             else if (err) {
                 // return response to requester
                 return res
@@ -95,9 +91,7 @@ const flowersFindCode = async (req, res) => {
 
 /**
  * Method for POST /flowers
- * adds new data (flower) to collection based on request body (form data) passed in
- * @param {*} req 
- * @param {*} res 
+ * [adds new data (flower) to flower collection based on request body (form data) passed in]
  */
 const flowersAddFlower = async (req, res) => {
     // model instance
@@ -119,7 +113,7 @@ const flowersAddFlower = async (req, res) => {
             (err, flower) => {
                 // output to server console
                 console.log('Executing callback function for POST /flowers...');
-                // bad request, invalid content
+                // bad request, invalid syntax
                 if (err) {
                     // return response to requester
                     return res
@@ -140,10 +134,8 @@ const flowersAddFlower = async (req, res) => {
 
 /**
  * Method for PUT /flowers/:flowerCode
- * locate existing flower document based on URL parameter (flower code) passed in
- * then update the document with the request-body values passed in
- * @param {*} req 
- * @param {*} res 
+ * [locate existing flower document based on URL parameter (flower code)
+ * then update the document with the request-body values passed in]
  */
 const flowersUpdateFlower = async (req, res) => {
     // output to server console (display incoming request body)
@@ -215,10 +207,8 @@ const flowersUpdateFlower = async (req, res) => {
 
 /**
  * Method for DELETE /flowers/:flowerCode
- * locate existing flower document based on URL parameter (flower code) passed in
- * then remove the document from the database collection
- * @param {*} req 
- * @param {*} res 
+ * [locate existing flower document based on URL parameter (flower code)
+ * then remove the document from the database collection]
  */
 
 const flowersDeleteFlower = async (req, res) => {
@@ -273,7 +263,7 @@ const flowersDeleteFlower = async (req, res) => {
 }
 
 
-// export
+// export methods
 module.exports = {
     flowersList,
     flowersFindCode,
