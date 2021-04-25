@@ -11,7 +11,7 @@ const User = mongoose.model('users');
 /**
  * Method to Register New User
  * /api/register
- * requires: 
+ * Required inputs: name, email, password
  */
 const register = (req, res) => {
     // bad request (missing credential inputs)

@@ -77,11 +77,11 @@ app.use('/contact', indexRouter); // send request for '/contact' to the index ro
 app.use('/users', usersRouter); // send request for '/users' to the users router
 app.use('/api', apiRouter); // send request for '/api' to the api router
 
-// catch unauthorized error and create 401
+// catch unauthorized user error and create 401
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     res
-      .status(401)
+      .status(401) // HTTP status code (unauthorized)
       .json({ "message": err.name + ": " + err.message });
   }
 });
