@@ -19,4 +19,23 @@ Change Log for Portfolio Submission
     --added HBS functionality for nav bar on backend server
         --app.js ==> registered hbs helper "ifequal" w/ conditional function
                         to use in header/footer partials (selected/active Links)
-    --
+    --redesigned homepage
+        -- swapped in partials
+        -- changed text & links
+        -- changed pictures, logo, etc.
+
+*4/25/2021*
+    --addPages branch (finalize the pages that were added)
+        --add content to pages
+        
+    --API --> security
+        --  .env  --> jwt secret
+        --created userSchema (model) w/ password set & validate methods, as well as generate JWT method
+        --Passport config (local strategy)
+        --auth controller
+            --register user & user login methods
+        --auth router
+        --updated app.js
+        --created admin user account (email = admin@floweringspaces.com   password = password)
+
+    --API --> security part 2 (securityPart2  branch)

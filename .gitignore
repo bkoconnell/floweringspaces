@@ -71,3 +71,6 @@ typings/
 
 # Local History for Visual Studio Code
 .history/
+
+# Portfolio change log
+portfolioChangeLog.txt
