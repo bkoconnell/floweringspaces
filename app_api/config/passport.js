@@ -2,36 +2,37 @@
  * Passport Config file
  */
 
-// dependencies
+// Dependencies
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-// bring in user schema
-const User = mongoose.model('users');
+const User = mongoose.model('users'); // bring in user schema
 
-/* Passport logic for handling user login credentials */
+/**
+ * Passport logic: Authenticate User Login Credentials
+ */
 passport.use(new LocalStrategy({
     // set email as username field (unique id)
     usernameField: 'email'
 },
     (username, password, done) => {
-        // mongoose function: search database for unique match
+        // mongoose method to find email
         User.findOne({ email: username }, (err, user) => {
-            // handle error
+            // handle errors
             if (err) { return done(err); }
-            // no match
+            // invalid user
             if (!user) {
                 return done(null, false, {
                     message: 'Incorrect username.'
                 });
             }
-            // found user match -- invalid password
+            // invalid password
             if (!user.validPassword(password)) {
                 return done(null, false, {
                     message: 'Incorrect password.'
                 });
             }
-            // user match & valid password
+            // authentication successful - return user object
             return done(null, user);
         });
     }
