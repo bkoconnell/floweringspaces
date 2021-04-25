@@ -58,5 +58,6 @@ process.on('SIGTERM', () => {
 /* Invoke mongoose connect() method */
 connect();
 
-// bring in the mongoose schema for floweringspaces (flowerSchema)
+// bring in the mongoose schemas
 require('./floweringspaces');
+require('./users');

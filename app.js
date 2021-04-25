@@ -1,11 +1,12 @@
 /* Dependencies */
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express'); // set express module to constant variable
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
-const { check } = require('express-validator');
+// const { check } = require('express-validator');
 
 // trigger database connection and mongoose schema models to be loaded at application startup
 require('./app_api/models/db');

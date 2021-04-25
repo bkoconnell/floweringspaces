@@ -1,9 +1,14 @@
+/**
+ * Mongoose Schema for Flowers
+ */
+
+
 // dependencies
 const mongoose = require('mongoose');
 
 // define the flowers schema
 const flowerSchema = new mongoose.Schema({
-    code: { type: String, required: true, index: true },
+    code: { type: String, unique: true, required: true, index: true },
     name: { type: String, required: true, index: true },
     scientific: { type: String, required: true },
     type: { type: String, required: true },
