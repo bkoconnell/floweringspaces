@@ -35,13 +35,13 @@ router
 router
     .route('/flowers')
     .get(flowersController.flowersList)
-    .post(flowersController.flowersAddFlower);
+    .post(auth, flowersController.flowersAddFlower);
 
 router // URL parameter --> "flowerCode"
     .route('/flowers/:flowerCode')
     .get(flowersController.flowersFindCode)
-    .put(flowersController.flowersUpdateFlower)
-    .delete(flowersController.flowersDeleteFlower);
+    .put(auth, flowersController.flowersUpdateFlower)
+    .delete(auth, flowersController.flowersDeleteFlower);
 
 
 // export routers
