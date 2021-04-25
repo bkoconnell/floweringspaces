@@ -34,24 +34,15 @@ const app = express();
 app.set('views', path.join(__dirname, 'app_server', 'views'));  // setup view engine (set views to 'views' directory)
 hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // register handlebars partials (https://www.npmjs.com/package/hbs)
 // Thanks to bendog @ http://doginthehat.com.au/2012/02/comparison-block-helper-for-handlebars-templates/
-// for inspiring this handlebars helper solution:
+// for inspiring this handlebars helper solution for navigation selection in partials:
 hbs.registerHelper('ifequal', function (lvalue, rvalue, options) {
   if (rvalue === undefined) {
-    console.log('undefined:');
-    console.log(lvalue);
-    console.log(rvalue);
     return;
   }
   else if (lvalue != rvalue) {
-    console.log('NOT EQUAL:');
-    console.log(lvalue);
-    console.log(rvalue);
     return options.inverse(this);
   }
   else {
-    console.log('Equal!:');
-    console.log(lvalue);
-    console.log(rvalue);
     return options.fn(this);
   }
 });
@@ -79,6 +70,10 @@ app.use('/api', (req, res, next) => {                                 // use API
 app.use('/', indexRouter); // send request for '/' to the index router
 app.use('/nursery', indexRouter); // send request for '/nursery' to the index router
 app.use('/landscapes', indexRouter); // send request for '/landscapes' to the index router
+app.use('/testimonials', indexRouter); // send request for '/testimonials' to the index router
+app.use('/gardenblog', indexRouter); // send request for '/gardenblog' to the index router
+app.use('/about', indexRouter); // send request for '/about' to the index router
+app.use('/contact', indexRouter); // send request for '/contact' to the index router
 app.use('/users', usersRouter); // send request for '/users' to the users router
 app.use('/api', apiRouter); // send request for '/api' to the api router
 

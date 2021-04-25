@@ -19,8 +19,10 @@
 								<!-- Handlebars loop for each 'flowers' -->
 								{{#each flowers}}
 								<li>
-<!-- #FIXME: /api/flowers/{{this.code}}  is for dev/test -->
-									<a href="/api/flowers/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
+									<!-- This line is for API debug/test -->
+									{{!-- <a href="/api/flowers/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a> --}}
+
+									<a href="/nursery"><img src="images/{{this.image}}" alt="Img"></a>
 									<h2><a href="/nursery">{{this.name}}</a></h2>
 									{{this.scientific}}
 									{{{this.description}}}
