@@ -6,10 +6,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
+const passport = require('passport');
 // const { check } = require('express-validator');
+
 
 // trigger database connection and mongoose schema models to be loaded at application startup
 require('./app_api/models/db');
+
+// passport config file
+require('./app_api/config/passport');
 
 // instantiate routers
 const indexRouter = require('./app_server/routes/index');
@@ -17,11 +22,15 @@ const usersRouter = require('./app_server/routes/users');
 const apiRouter = require('./app_api/routes/index');
 
 
-/* Create Express Application */
+/**
+ * Create Express Application 
+ */
 const app = express();
 
 
-/* View Engine */
+/**
+ * View Engine
+ */
 app.set('views', path.join(__dirname, 'app_server', 'views'));  // setup view engine (set views to 'views' directory)
 hbs.registerPartials(path.join(__dirname, 'app_server', 'views/partials')); // register handlebars partials (https://www.npmjs.com/package/hbs)
 // Thanks to bendog @ http://doginthehat.com.au/2012/02/comparison-block-helper-for-handlebars-templates/
@@ -32,13 +41,13 @@ hbs.registerHelper('ifequal', function (lvalue, rvalue, options) {
     console.log(lvalue);
     console.log(rvalue);
     return;
-  } 
+  }
   else if (lvalue != rvalue) {
     console.log('NOT EQUAL:');
     console.log(lvalue);
     console.log(rvalue);
     return options.inverse(this);
-  } 
+  }
   else {
     console.log('Equal!:');
     console.log(lvalue);
@@ -56,11 +65,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 // allows CORS (cross-origin resource sharing)
 app.use('/api', (req, res, next) => {                                 // use API endpoint
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); // allow access from Angular
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // specify which headers are allowed 
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // specify which headers are allowed 
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // specify which methods are allowed to be called
   next();
 });
@@ -71,6 +81,15 @@ app.use('/nursery', indexRouter); // send request for '/nursery' to the index ro
 app.use('/landscapes', indexRouter); // send request for '/landscapes' to the index router
 app.use('/users', usersRouter); // send request for '/users' to the users router
 app.use('/api', apiRouter); // send request for '/api' to the api router
+
+// catch unauthorized error and create 401
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res
+      .status(401)
+      .json({ "message": err.name + ": " + err.message });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
