@@ -22,3 +22,8 @@ Change Log for Portfolio Submission
         -- swapped in partials
         -- changed text & links
         -- changed pictures, logo, etc.
+
+*4/25/2021*
+    --addPages branch (finalize the pages that were added)
+        --add content to pages
+        
