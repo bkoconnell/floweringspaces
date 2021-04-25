@@ -1,17 +1,14 @@
 /**
- * FrontEnd [client] Service Handler 
- * for API calls to the Flowers db.collection
+ * API Call Service Handler [client]]
  * 
- * (facilitates sending HTTP calls to REST API enpoint
+ * (facilitates sending HTTP calls to REST API endpoint
  *  and returns the API's response back to the requester)
  */
-
 
 // import Angular modules
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
-
-// import objects
+// import models & local storage object
 import { Flower } from '../models/flower';
 import { User } from '../models/user';
 import { Authresponse } from '../models/authresponse';
@@ -141,9 +138,9 @@ export class FlowerDataService {
     const url: string = `${this.apiBaseUrl}${urlPath}`;
     // logic for HTTP request call & API response handling
     return this.http
-      .post(url, user)                                   // POST call to API w/ URL parameter & request body (user data)
+      .post(url, user)                                   // POST call to API w/ URL parameter & request body (payload->[user details])
       .toPromise()                                       // Convert observable response to a promise
-      .then(response => response.json() as Authresponse) // Set promise response to single instance for return()
+      .then(response => response.json() as Authresponse) // Set promise response to single instance for return(Authresponse object)
       .catch(this.handleError);                          // Error handler (invoke handleError method)
   }
 }
