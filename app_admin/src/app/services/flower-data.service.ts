@@ -103,7 +103,7 @@ export class FlowerDataService {
     return this.http
       .delete(this.flowerUrl + flowerCode)           // DELETE call to API w/ URL parameter (flower code)
       .toPromise()                                   // Convert observable response to a promise
-      .then(response => response.json() as Flower[]) // Set promise response to single instance for return ()
+      .then(response => response.json() as Flower[]) // Set promise response to single instance for return(empty array)
       .catch(this.handleError);                      // Error handler (invoke handleError method)
   }
 
@@ -115,5 +115,35 @@ export class FlowerDataService {
     console.error('REQUEST FAILED: ', error);
     // return response to requester
     return Promise.reject(error.message || error);
+  }
+
+  /**
+   * Method to pass Login request
+   */
+  public login(user: User): Promise<Authresponse> {
+    // pass endpoint path & user object to AuthApiCall method
+    return this.makeAuthApiCall('login', user);
+  }
+
+  /**
+   * Method to pass Register New User request
+   */
+  public register(user: User): Promise<Authresponse> {
+    // pass endpoint path & user object to AuthApiCall method
+    return this.makeAuthApiCall('register', user);
+  }
+
+  /**
+   * Method to make Authentication API Call
+   */
+  private makeAuthApiCall(urlPath: string, user: User): Promise<Authresponse> {    
+    // API endpoint
+    const url: string = `${this.apiBaseUrl}${urlPath}`;
+    // logic for HTTP request call & API response handling
+    return this.http
+      .post(url, user)                                   // POST call to API w/ URL parameter & request body (user data)
+      .toPromise()                                       // Convert observable response to a promise
+      .then(response => response.json() as Authresponse) // Set promise response to single instance for return()
+      .catch(this.handleError);                          // Error handler (invoke handleError method)
   }
 }
