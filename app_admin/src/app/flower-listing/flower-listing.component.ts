@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 // import services & models
 import { FlowerDataService } from '../services/flower-data.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { Flower } from '../models/flower';
 
 @Component({
@@ -23,17 +24,23 @@ export class FlowerListingComponent implements OnInit {
 
   constructor(
     private flowerDataService: FlowerDataService,
+    private authenticationService: AuthenticationService,
     private router: Router
     ) { }
 
-  // private method to navigate to 'add flower' form (when 'add flower' button is clicked)
+  /**
+   * Private Method:
+   * navigate to 'add flower' form when 'add flower' button is clicked
+   */
   private addFlower(): void {
     // browser console output
     console.log('Inside FlowerListingComponent#addFlower');
     this.router.navigate(['add-flower']);
   }
 
-  // private method to get flowers array for rendering view
+  /**
+   * Private Method: get flowers array for rendering view
+   */
   private getFlowers(): void {
     // browser console output
     console.log('Inside FlowerListingComponent#getFlowers');
@@ -48,7 +55,17 @@ export class FlowerListingComponent implements OnInit {
         });
   }
 
-  // callback method to get flowers before rendering view
+  /**
+   * Method to toggle 'Add Flower' button based on user login status
+   */ 
+     public isLoggedIn(): boolean {
+      // check to see if user is logged in
+      return this.authenticationService.isLoggedIn();
+    }
+
+  /**
+   * Callback method to getFlowers() before rendering view
+   */
   ngOnInit(): void {
     this.getFlowers();
   }
