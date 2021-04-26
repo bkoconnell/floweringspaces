@@ -24,36 +24,48 @@ export class AuthenticationService {
     private flowerDataService: FlowerDataService
   ) { }
 
-  // method to retrieve token from local browser storage
+  /**
+   * Method to retrieve token from local browser storage
+   */
   public getToken(): string {
     return this.storage.getItem('fs-token');
   }
 
-  // method to save token to local browser storage after user registers or logs in
+  /**
+   * Method to save token to local browser storage after user registers or logs in
+   */
   public saveToken(token: string): void {
     this.storage.setItem('fs-token', token);
   }
 
-  // saveToken wrapper for the flowerDataService.login() method
+  /**
+   * saveToken wrapper for the flowerDataService.login() method
+   */
   public login(user: User): Promise<any> {
     return this.flowerDataService.login(user)
       // save token from auth response (after login) to local browser storage
       .then((authResp: Authresponse) => this.saveToken(authResp.token));
   }
 
-  // saveToken wrapper for the flowerDataService.register() method
+  /**
+   * saveToken wrapper for the flowerDataService.register() method
+   */
   public register(user: User): Promise<any> {
     return this.flowerDataService.register(user)
       // save token from auth response (after user registers) to local browser storage
       .then((authResp: Authresponse) => this.saveToken(authResp.token));
   }
 
-  // method to logout user (deletes token from browser's local storage)
+   /**
+   * Method to logout user (deletes token from browser's local storage)
+   */
   public logout(): void {
     this.storage.removeItem('fs-token');
   }
 
-  // method to check user's login status
+  /**
+   * Method to check user's login status
+   */
   public isLoggedIn(): boolean {
     // retrieves token from local storage
     const token: string = this.getToken();
@@ -70,7 +82,9 @@ export class AuthenticationService {
     }
   }
 
-  // method to extract user email & name from JWToken
+  /**
+   * Method to extract user email & name from JWToken
+   */
   public getCurrentUser(): User {
     // user is logged in
     if (this.isLoggedIn()) {
