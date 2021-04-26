@@ -86,8 +86,7 @@ export class FlowerDataService {
   public updateFlower(formData: Flower): Promise<Flower> {
 
     // browser console output
-    console.log('Inside FlowerDataService#updateFlower');
-    console.log(formData);
+    console.log('Inside FlowerDataService#updateFlower...' + formData);
 
     // logic for HTTP request & API response handling
     return this.http

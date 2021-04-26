@@ -28,7 +28,7 @@ export class EditFlowerComponent implements OnInit {
 
   ngOnInit() {
 
-    // retrieve stashed flower code
+    // Retrieve stashed flower code
     let flowerCode = localStorage.getItem("editFlowerCode");
 
     // Alert if flower code retrieval Fails -- navigate back to flowers list
@@ -37,6 +37,7 @@ export class EditFlowerComponent implements OnInit {
       this.router.navigate(['list-flowers']);
       return;
     }
+
     /* Flower Code Retrieved Successfully */
     console.log('EditFlowerComponent#onInit found flowerCode ' + flowerCode); // browser console output
 
@@ -51,10 +52,7 @@ export class EditFlowerComponent implements OnInit {
       price: ['', Validators.required],
       image: ['', Validators.required],
       description: ['', Validators.required],
-    })    
-    // output to browser console
-    console.log('EditFlowerComponent#onInit calling FlowerDataService#getFlower(\'' + flowerCode + '\')');
-    
+    })            
     /**
      * NOTE: Best practice to call getFlower() method to retrieve the most recent data
      * prior to updating the database.

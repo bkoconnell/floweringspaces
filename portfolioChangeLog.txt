@@ -94,8 +94,27 @@ Change Log for Portfolio Submission
     portfolioFinal branch:
         
         --backend server:
-            --remove Auth wrappers in the flowers.js Controller methods
-              because authorization is being validated on the frontend w/ the button toggle logic
+          [authorization is being validated on the frontend w/ the button toggle logic
+          and therefore does not need to be validated again on the backend ...
+          it is causing errors to be thrown for authorized users]
+            --remove Auth wrappers in the flowers.js Controller methods               
+            --remove Auth request handlers from flowers routes on index.js
+        
+
+   {#FIXME: edit-flowers.component.html: 
+            ERROR TypeError: Cannot read property 'code' of undefined
+            EditFlowerComponent.html:4
+        Here's the code:
+            <!-- confirm that [formGroup] matches the FormGroup created in the .ts file -->
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        
+        Everything processes correctly, but for some reason a TypeError is output into the browser console.
+        NO, confirmed this is not it ---> Maybe something to do with that unique code that I turned on in the schema?
+        Will investigate further...
+   }
+
+        --
+
     
 
 
