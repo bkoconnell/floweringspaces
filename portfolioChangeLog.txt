@@ -86,6 +86,16 @@ Change Log for Portfolio Submission
             --nav bar
             --login
         --Fixed Home Page layout for login/register options & for users already logged in
+
+
+
+*4/26/2021*
+
+    portfolioFinal branch:
+        
+        --backend server:
+            --remove Auth wrappers in the flowers.js Controller methods
+              because authorization is being validated on the frontend w/ the button toggle logic
     
 
 
