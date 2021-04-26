@@ -61,6 +61,7 @@ export class AuthenticationService {
    */
   public logout(): void {
     this.storage.removeItem('fs-token');
+    console.log('Logout successful ... Good bye!');
   }
 
   /**

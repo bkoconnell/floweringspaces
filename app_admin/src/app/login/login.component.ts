@@ -32,14 +32,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
   /**
    *  Method to handle conditions when login button is clicked
-   */ 
+   */
   public onLoginSubmit(): void {
     this.formError = '';
     // missing credentials - error
     if (!this.credentials.email || !this.credentials.password) {
       console.log('Missing credentials');
       this.formError = 'All fields are required, please try again';
-    } 
+    }
     // call doLogin() method if all credentials are entered
     else {
       this.doLogin();

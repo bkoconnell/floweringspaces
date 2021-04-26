@@ -22,16 +22,21 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() { }
 
-  // method to toggle condition for html Login/Logout button
+  /**
+   * Method to toggle condition for html Login/Logout button
+   */ 
   public isLoggedIn(): boolean {
     // check to see if user is logged in
     return this.authenticationService.isLoggedIn();
   }
 
-  // method to initiate logout (triggered when the user clicks the 'logout' button)
+  /**
+   * Method to initiate logout;
+   * triggered when the user clicks the 'logout' button
+   */
   private onLogout(): void {
+    // call auth service 'logout' method then navigate to the URL path
     this.authenticationService.logout();
-    // navigates to specified URL path
     this.router.navigateByUrl('#');
     return;
   }
