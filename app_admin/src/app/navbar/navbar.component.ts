@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
    * triggered when the user clicks the 'logout' button
    */
   private onLogout(): void {
-    // call auth service 'logout' method then navigate to the URL path
+    // call auth service 'logout' method then navigate to the home path
     this.authenticationService.logout();
     this.router.navigateByUrl('#');
     return;

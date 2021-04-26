@@ -32,9 +32,8 @@ export class FlowerListingComponent implements OnInit {
    * Private Method:
    * navigate to 'add flower' form when 'add flower' button is clicked
    */
-  private addFlower(): void {
-    // browser console output
-    console.log('Inside FlowerListingComponent#addFlower');
+  private addFlower(): void {    
+    console.log('Inside FlowerListingComponent#addFlower'); // browser console output
     this.router.navigate(['add-flower']);
   }
 
@@ -42,9 +41,11 @@ export class FlowerListingComponent implements OnInit {
    * Private Method: get flowers array for rendering view
    */
   private getFlowers(): void {
+
     // browser console output
     console.log('Inside FlowerListingComponent#getFlowers');
     this.message = 'Searching for flowers';
+    
     // invoke service method getFlowers() to get flower array
     this.flowerDataService
       .getFlowers()

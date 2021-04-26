@@ -33,8 +33,10 @@ export class FlowerDataService {
    * (add a new flower to db.collection)
    */
   public addFlower(formData: Flower): Promise<Flower> {
+
     // browser console output
     console.log('Inside FlowerDataService#addFlower');
+
     // logic for HTTP request & API response handling
     return this.http
       .post(this.flowerUrl, formData)                // POST call to API w/ request body (form data)
@@ -48,8 +50,10 @@ export class FlowerDataService {
    * (read a single flower by code)
    */
   public getFlower(flowerCode: string): Promise<Flower> {
+
     // browser console output
     console.log('Inside FlowerDataService#getFlower(flowerCode)');
+
     // logic for HTTP call & API response handling
     return this.http
       .get(this.flowerUrl + flowerCode)            // GET call to API w/ URL parameter (flower code)
@@ -63,8 +67,10 @@ export class FlowerDataService {
    * (read all flowers in db.collection)
    */
   public getFlowers(): Promise<Flower[]> {
+
     // browser console output
     console.log('Inside FlowerDataService#getFlowers');
+
     // logic for HTTP request & API response handling
     return this.http
       .get(this.flowerUrl)                           // GET call to API
@@ -78,9 +84,11 @@ export class FlowerDataService {
    * (update a single flower by code)
    */
   public updateFlower(formData: Flower): Promise<Flower> {
+
     // browser console output
     console.log('Inside FlowerDataService#updateFlower');
-    console.log(formData); // dump form data to browser console (debugging)
+    console.log(formData);
+
     // logic for HTTP request & API response handling
     return this.http
       .put(this.flowerUrl + formData.code, formData) // PUT call to API w/ URL parameter (flower code) & request body (form data)
@@ -94,8 +102,10 @@ export class FlowerDataService {
   * (delete a single flower by code)
   */
   public deleteFlower(flowerCode: string): Promise<Flower> {
+
     // browser console output
     console.log('Inside FlowerDataService#deleteFlower');
+    
     // logic for HTTP request call & API response handling
     return this.http
       .delete(this.flowerUrl + flowerCode)           // DELETE call to API w/ URL parameter (flower code)
@@ -108,8 +118,10 @@ export class FlowerDataService {
    * Method to Handle Error Response from API
    */
   private handleError(error: any): Promise<any> {
+
     // browser console output for rejected API request
     console.error('REQUEST FAILED: ', error);
+
     // return response to requester
     return Promise.reject(error.message || error);
   }
@@ -133,9 +145,14 @@ export class FlowerDataService {
   /**
    * Method to make Authentication API Call
    */
-  private makeAuthApiCall(urlPath: string, user: User): Promise<Authresponse> {    
+  private makeAuthApiCall(urlPath: string, user: User): Promise<Authresponse> { 
+    
+    // browser console output
+    console.log('Sending HTTP request to API');
+
     // API endpoint
     const url: string = `${this.apiBaseUrl}${urlPath}`;
+    
     // logic for HTTP request call & API response handling
     return this.http
       .post(url, user)                                   // POST call to API w/ URL parameter & request body (payload->[user details])

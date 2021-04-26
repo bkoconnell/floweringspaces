@@ -17,7 +17,7 @@ import { FlowerDataService } from '../services/flower-data.service';
 
 export class EditFlowerComponent implements OnInit {
 
-  editForm: FormGroup; // an 'Edit Form'
+  editForm: FormGroup; // create an empty 'Edit Form'
   submitted = false;   // set Boolean for submit button
 
   constructor(
@@ -27,16 +27,18 @@ export class EditFlowerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     // retrieve stashed flower code
     let flowerCode = localStorage.getItem("editFlowerCode");
+
+    // Alert if flower code retrieval Fails -- navigate back to flowers list
     if (!flowerCode) {
-      // cannot locate flower code
-      alert("Failed to retrieve flowerCode from local browser storage. Navigating back to default page.");
-      this.router.navigate(['']);
+      alert("Failed to retrieve flowerCode from local browser storage. Navigating back to flowers list.");
+      this.router.navigate(['list-flowers']);
       return;
     }
-    // output to browser console
-    console.log('EditFlowerComponent#onInit found flowerCode ' + flowerCode);
+    /* Flower Code Retrieved Successfully */
+    console.log('EditFlowerComponent#onInit found flowerCode ' + flowerCode); // browser console output
 
     // initialize edit form
     this.editForm = this.formBuilder.group({
@@ -57,7 +59,8 @@ export class EditFlowerComponent implements OnInit {
      * NOTE: Best practice to call getFlower() method to retrieve the most recent data
      * prior to updating the database.
      */
-    this.flowerService.getFlower(flowerCode) // call getFlower() service method, pass flower code
+    this.flowerService.getFlower(flowerCode)
+      // pass the retrieved data object
       .then(data => {
         // output data to browser console
         console.log(data);      
@@ -69,17 +72,20 @@ export class EditFlowerComponent implements OnInit {
       })
   }
 
-  // user submission function ('Save' button)
+  /**
+   * User submission function ('Save' button)
+   */   
   onSubmit() {
     this.submitted = true;
     // validate submission
     if (this.editForm.valid) {
-      // invoke updateFlower method
+      // invoke updateFlower method & pass form data
       this.flowerService.updateFlower(this.editForm.value)
+        // pass data object
         .then(data => {
-          // output data to browser console
+          // output data to browser console & navigate back to flowers list
           console.log(data);
-          this.router.navigate(['']);
+          this.router.navigate(['list-flowers']);
         });
     }
   }

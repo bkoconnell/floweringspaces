@@ -1,5 +1,5 @@
 /**
- * Authentication/Token Service Handler [client]
+ * Authentication Service Handler [client]
  * 
  * (facilitates saving and retrieving the JSON web token [jwt])
  */
@@ -68,16 +68,18 @@ export class AuthenticationService {
    * Method to check user's login status
    */
   public isLoggedIn(): boolean {
-    // retrieves token from local storage
+
+    // retrieve token from local storage
     const token: string = this.getToken();
-    // token exists (user is logged in)
+
+    // Token exists (user is logged in)
     if (token) {
       // extract payload (from token), decode it, and parse into JSON
       const payload = JSON.parse(atob(token.split('.')[1]));
       // validate the expiration data & return the result
       return payload.exp > (Date.now() / 1000);
     }
-    // token does not exist (user is not logged in)
+    // Token does not exist (user is not logged in)
     else {
       return false;
     }
@@ -86,7 +88,8 @@ export class AuthenticationService {
   /**
    * Method to extract user email & name from JWToken
    */
-  public getCurrentUser(): User {
+  public getCurrentUser(): User {    
+    
     // user is logged in
     if (this.isLoggedIn()) {
       // retrieve token from local storage

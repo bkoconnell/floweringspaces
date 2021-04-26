@@ -34,9 +34,11 @@ export class FlowerCardComponent implements OnInit {
    * Method for EditFlower button functionality
    */
   private editFlower(flower: Flower): void {
+
     // stash the flower code in browser's local storage for 'edit component' to retrieve later
     localStorage.removeItem("editFlowerCode");
     localStorage.setItem("editFlowerCode", flower.code);
+
     // navigate
     this.router.navigate(['edit-flower']);
   }
@@ -45,12 +47,15 @@ export class FlowerCardComponent implements OnInit {
    * Method for DeleteFlower button functionality
    */
   private deleteFlower(flower: Flower): void {
+
     // stash the flower code in browser's local storage for 'delete component' to retrieve later
     localStorage.removeItem("deleteFlowerCode");
     localStorage.setItem("deleteFlowerCode", flower.code);
+
     // browser console output
     console.log('Initiating DELETE request...');
-    // invoke deleteFlower method from flower data service
+
+    // invoke deleteFlower method from flower data service, then pass response
     this.flowerService.deleteFlower(this.flower.code)
       .then(res => {
         // output to browser console (debugging)

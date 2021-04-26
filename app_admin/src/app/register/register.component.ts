@@ -1,6 +1,6 @@
 /**
- * Login controller (frontend / client)
- * for existing users
+ * Register controller (frontend / client)
+ * for new users
  */
 
 // import Angular modules
@@ -11,11 +11,11 @@ import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../models/user';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   // initialize variable for form error
   public formError: string = '';
@@ -37,30 +37,34 @@ export class LoginComponent implements OnInit {
   /**
    *  Method to handle conditions when login button is clicked
    */
-  public onLoginSubmit(): void {
+  public onRegisterSubmit(): void {
 
     // reset formError
     this.formError = '';
 
     // missing credentials --> error
-    if (!this.credentials.email || !this.credentials.password) {
+    if (!this.credentials.name ||
+      !this.credentials.email ||
+      !this.credentials.password) {
+      // output error message
       console.log('Missing credentials');
       this.formError = 'All fields are required, please try again';
     }
-    // call doLogin() method if all credentials are entered
+    // call doRegister() method if all credentials are entered
     else {
-      this.doLogin();
+      this.doRegister();
     }
   }
 
   /**
-   * Method for user login
+   * Method to Register user
    */
-  private doLogin(): void {
-    // call auth service 'login' method & pass credentials
-    this.authenticationService.login(this.credentials)
-      // route to flowers list if login successful, otherwise handle errors
+  private doRegister(): void {
+    // call auth service 'register' method & pass credentials
+    this.authenticationService.register(this.credentials)
+      // route to flowers list if register is successful, otherwise handle errors
       .then(() => this.router.navigateByUrl('list-flowers'))
       .catch((message) => this.formError = message);
   }
+
 }

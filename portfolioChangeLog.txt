@@ -73,6 +73,20 @@ Change Log for Portfolio Submission
         --add login component (controller) & update app-router.module path
         --flower listing ==> add security feature to confirm login status to use add flower button
         --flower card ==> add security feature to confirm login status to use edit & delete buttons
+        --add home component & update app-router.module
+        --add register component (controller)
+            --typescript methods
+            --html form & links
+            --update app-router.module path
+            --also added 'login' link on register page & 'register' link on login page to help navigate
+        --fix Nav links that originally routed to default path '', which now need to navigate to flowers list page
+            --add-flower
+            --edit-flower
+            --delete-flower
+            --nav bar
+            --login
+        --Fixed Home Page layout for login/register options & for users already logged in
+    
 
 
 

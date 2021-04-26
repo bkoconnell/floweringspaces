@@ -59,7 +59,8 @@ export class AddFlowerComponent implements OnInit {
         .then(data => {
           // output data to browser console
           console.log(data);
-          this.router.navigate(['']);
+          // route back to flowers list
+          this.router.navigate(['list-flowers']);
         });
     }
   }

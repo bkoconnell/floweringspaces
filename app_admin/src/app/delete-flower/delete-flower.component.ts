@@ -27,7 +27,7 @@ export class DeleteFlowerComponent implements OnInit {
   }
 
   // method for admin page button navigation
-  private adminPage(): void {
-    this.router.navigate(['']);
+  private flowersListNav(): void {
+    this.router.navigate(['list-flowers']);
   }
 }
