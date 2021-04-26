@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
  * The JavaScript variables are “bound” to the HTML form controls
  * with Angular’s forms library taking care of moving data
  * back and forth between the view (HTML) and the model (JavaScript).
- */ 
+ */
 
 // import service
 import { FlowerDataService } from '../services/flower-data.service';
@@ -56,8 +56,9 @@ export class AddFlowerComponent implements OnInit {
     if (this.addForm.valid) {
       // invoke addFlower method
       this.flowerService.addFlower(this.addForm.value)
+        // pass response data
         .then(data => {
-          // output data to browser console
+          // output to browser console
           console.log(data);
           // route back to flowers list
           this.router.navigate(['list-flowers']);
