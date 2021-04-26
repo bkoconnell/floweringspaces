@@ -13,10 +13,12 @@ import { AppRoutingModule } from './app-router.module';
 import { FlowerListingComponent } from './flower-listing/flower-listing.component';
 import { FlowerCardComponent } from './flower-card/flower-card.component';
 import { FlowerDataService } from './services/flower-data.service';
+import { AuthenticationService } from './services/authentication.service';
 import { AddFlowerComponent } from './add-flower/add-flower.component';
 import { EditFlowerComponent } from './edit-flower/edit-flower.component';
 import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AddFlowerComponent,
     EditFlowerComponent,
     DeleteFlowerComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule
   ],
   providers: [
-    FlowerDataService
+    FlowerDataService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

@@ -10,12 +10,14 @@ import { FlowerListingComponent } from './flower-listing/flower-listing.componen
 import { AddFlowerComponent } from './add-flower/add-flower.component';
 import { EditFlowerComponent } from './edit-flower/edit-flower.component';
 import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
+import { LoginComponent } from './login/login.component';
 
 // define & map routes
 const routes: Routes = [
     { path: 'add-flower', component: AddFlowerComponent},       // add-flower route
     { path: 'edit-flower', component: EditFlowerComponent},     // edit-flower route
     { path: 'delete-flower', component: DeleteFlowerComponent}, // delete-flower route
+    { path: 'login', component: LoginComponent},                // login route
     // default path (when none is specified):
     { path: '', component: FlowerListingComponent, pathMatch: 'full' }
 ]
