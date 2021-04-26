@@ -24,10 +24,14 @@ export class NavbarComponent implements OnInit {
 
   // method to toggle condition for html Login/Logout button
   public isLoggedIn(): boolean {
+    // check to see if user is logged in
     return this.authenticationService.isLoggedIn();
   }
+
+  // method to initiate logout (triggered when the user clicks the 'logout' button)
   private onLogout(): void {
     this.authenticationService.logout();
+    // navigates to specified URL path
     this.router.navigateByUrl('#');
     return;
   }

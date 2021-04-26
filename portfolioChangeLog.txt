@@ -34,7 +34,35 @@ Change Log for Portfolio Submission
         --auth controller
             --register user & user login methods
         --auth router
-        --updated app.js
-        --created admin user account (email = admin@floweringspaces.com   password = password)
+        --updated app.js (dependencies, required triggers, app.use, update CORS for auth, and unauth error handler)
+        --created admin user account via Postman (email = admin@floweringspaces.com   password = password)
 
     --API --> security part 2 (securityPart2  branch)
+        --API router
+            --'auth' ==> created JWT token logic & assigned to 'auth' variable
+            --added 'auth' as requirement for post, put, and delete methods
+        --API flowers controller
+            --created getUser method for user verification
+            --wrapped post, put, and delete methods w/ getUser
+
+    --Frontend Security (Angular)
+        --models
+            --user class (login request object sent to browser)
+            --authresponse class (login response object sent from browser)
+        --create storage object to facilitate localStorage (to store token response)
+        --flower-data service:
+            --updated comments
+            --added more imports
+            --added Storage to constructor
+            --added login method
+            --added register method
+            --added makeAuthApiCall method
+        --create authentication service
+            --getToken wrapper for dataservice.login method
+            --saveToken wrapper for dataservice.register method
+            --method to logout
+            --method to check user login status
+            --method to extract user name & email if logged in 
+        --generate navbar component
+            --logo image
+            --type script logic

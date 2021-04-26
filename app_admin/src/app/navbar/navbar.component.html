@@ -12,11 +12,14 @@
     </div>
   </div>
   <div class="navbar-end ">
-    <!-- Login button (if user is NOT logged in)-->
+    <!-- Login button toggled if user is NOT logged in... 
+      the button has a router link to the 'login' component-->
     <a class="navbar-item" routerLink="login" *ngIf="!isLoggedIn()">
       <span class="has-icon-left">Log In</span>
     </a>
-    <!-- Logout button (if user is logged in)-->
+    <!-- Logout button toggled if user is logged in... 
+      clicking the button will logout the user
+      and navigate to URL path defined in the onLogout() method-->
     <a class="navbar-item" (click)="onLogout()" *ngIf="isLoggedIn()">
       <span class="has-icon-left ">Log Out</span>
     </a>
