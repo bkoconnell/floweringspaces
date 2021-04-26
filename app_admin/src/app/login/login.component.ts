@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     this.formError = '';
     // missing credentials - error
     if (!this.credentials.email || !this.credentials.password) {
+      console.log('Missing credentials');
       this.formError = 'All fields are required, please try again';
     } 
     // call doLogin() method if all credentials are entered
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
     // call auth service 'login' method & pass credentials
     this.authenticationService.login(this.credentials)
       // route to flowers list & handle errors
-      .then(() => this.router.navigateByUrl('list-flowers'))
+      .then(() => this.router.navigateByUrl(''))
       .catch((message) => this.formError = message);
   }
 }
