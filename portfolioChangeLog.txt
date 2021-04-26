@@ -66,3 +66,13 @@ Change Log for Portfolio Submission
         --generate navbar component
             --logo image
             --type script logic
+
+    --Frontend Security Part 2 branch (Angular)
+        --app component => switch "navigation bar" to call out navbar component
+        --add authentication service to service provider on app.module
+        --add login component (controller) & update app-router.module path
+        --flower listing ==> add security feature to confirm login status to use add flower button
+        --flower card ==> add security feature to confirm login status to use edit & delete buttons
+
+
+
