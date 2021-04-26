@@ -19,6 +19,7 @@ import { EditFlowerComponent } from './edit-flower/edit-flower.component';
 import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     EditFlowerComponent,
     DeleteFlowerComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

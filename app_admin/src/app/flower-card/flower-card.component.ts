@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 // import models & services
 import { Flower } from '../models/flower';
 import { FlowerDataService } from '../services/flower-data.service';
-import { AuthenticationDataService, AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-flower-card',

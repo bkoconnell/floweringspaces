@@ -11,15 +11,19 @@ import { AddFlowerComponent } from './add-flower/add-flower.component';
 import { EditFlowerComponent } from './edit-flower/edit-flower.component';
 import { DeleteFlowerComponent } from './delete-flower/delete-flower.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
-// define & map routes
+/**
+ * Route Mapping & Definitions
+ */
 const routes: Routes = [
+    { path: 'login', component: LoginComponent},                // login route
+    { path: 'list-flowers', component: FlowerListingComponent}, // flower list route
     { path: 'add-flower', component: AddFlowerComponent},       // add-flower route
     { path: 'edit-flower', component: EditFlowerComponent},     // edit-flower route
-    { path: 'delete-flower', component: DeleteFlowerComponent}, // delete-flower route
-    { path: 'login', component: LoginComponent},                // login route
-    // default path (when none is specified):
-    { path: '', component: FlowerListingComponent, pathMatch: 'full' }
+    { path: 'delete-flower', component: DeleteFlowerComponent}, // delete-flower route    
+    // DEFAULT PATH (when none is specified):
+    { path: '', component: HomeComponent, pathMatch: 'full' }
 ]
 
 @NgModule({
