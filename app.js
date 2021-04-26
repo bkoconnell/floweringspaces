@@ -1,3 +1,8 @@
+/**
+ * Express App object, Middleware, Routes , etc.
+ */
+
+
 /* Dependencies */
 require('dotenv').config();
 const createError = require('http-errors');
