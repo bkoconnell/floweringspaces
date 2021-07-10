@@ -1,0 +1,12 @@
+<!-- Flower Listing component html -->
+
+<!-- button to invoke Add Flower function if user is logged in -->
+<div *ngIf="isLoggedIn()">    
+    <button (click)="addFlower()" class="btn btn-info">Add Flower</button>
+</div>
+<div class="row">
+    <!-- angular loop for flowers db.collection ... send each to flower card component -->
+    <div *ngFor="let flower of flowers">
+        <app-flower-card [flower]="flower" class="card-deck mt-2"></app-flower-card>
+    </div>
+</div>

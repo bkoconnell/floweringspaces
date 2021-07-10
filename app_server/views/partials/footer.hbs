@@ -1,26 +1,26 @@
 <div id="footer">
     <div>
         <ul class="navigation">
-            <li>
-                <a href="../index">Home</a>
+            <li {{#ifequal title "Flowering Spaces - Home"}} class="active" {{/ifequal}} >
+                <a href="../">Home</a>
             </li>
-            <li class="active">
-                <a href="../flowers">Flowers</a>
+            <li {{#ifequal title "Flowering Spaces - Nursery"}} class="active" {{/ifequal}} >
+                <a href="../nursery">Nursery</a>
             </li>
-            <li>
-                <a href="rooms.html">Rooms</a>
+            <li {{#ifequal title "Flowering Spaces - Landscapes"}} class="active" {{/ifequal}} >
+                <a href="../landscapes">Landscapes</a>
             </li>
-            <li>
-                <a href="meals.html">Meals</a>
+            <li {{#ifequal title "Flowering Spaces - Testimonials"}} class="active" {{/ifequal}} >
+                <a href="../testimonials">Testimonials</a>
             </li>
-            <li>
-                <a href="news.html">News</a>
+            <li {{#ifequal title "Flowering Spaces - Garden Blog"}} class="active" {{/ifequal}} >
+                <a href="../gardenblog">Garden Blog</a>
             </li>
-            <li>
-                <a href="about.html">About</a>
+            <li {{#ifequal title "Flowering Spaces - About"}} class="active" {{/ifequal}} >
+                <a href="../about">About</a>
             </li>
-            <li>
-                <a href="contact.html">Contact</a>
+            <li {{#ifequal title "Flowering Spaces - Contact"}} class="active" {{/ifequal}} >
+                <a href="../contact">Contact</a>
             </li>
         </ul>
         <div id="connect">
@@ -30,7 +30,7 @@
                 href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" class="googleplus"></a>
         </div>
     </div>
-    <p>
+    <p><a href="http://localhost:4200">
         © 2021 by Flowering Spaces! All Rights Reserved
-    </p>
+    </a></p>
 </div>

@@ -1,0 +1,121 @@
+Change Log for Portfolio Submission
+
+
+
+*4/23/2021*
+    --added additional pages (no content)
+        --routers & controllers
+        --update app.js
+        --hbs navigation / partials
+    --refactored app_server routing
+        -- consolidated all server routers to index.js
+        -- updated app.js to reflect router changes
+            -- changed instantiations
+            -- changed app.use functions
+                --redirected /nursery to indexRouter
+                --added /landscapes (to indexRouter)
+    --fixed bug on HBS partials for index page link
+    --added HBS functionality for nav bar on backend server
+        --app.js ==> registered hbs helper "ifequal" w/ conditional function
+                        to use in header/footer partials (selected/active Links)
+    --redesigned homepage
+        -- swapped in partials
+        -- changed text & links
+        -- changed pictures, logo, etc.
+
+*4/25/2021*
+    --addPages branch (finalize the pages that were added)
+        --add content to pages
+        
+    --API --> security
+        --  .env  --> jwt secret
+        --created userSchema (model) w/ password set & validate methods, as well as generate JWT method
+        --Passport config (local strategy)
+        --auth controller
+            --register user & user login methods
+        --auth router
+        --updated app.js (dependencies, required triggers, app.use, update CORS for auth, and unauth error handler)
+        --created admin user account via Postman (email = admin@floweringspaces.com   password = password)
+
+    --API --> security part 2 (securityPart2  branch)
+        --API router
+            --'auth' ==> created JWT token logic & assigned to 'auth' variable
+            --added 'auth' as requirement for post, put, and delete methods
+        --API flowers controller
+            --created getUser method for user verification
+            --wrapped post, put, and delete methods w/ getUser
+
+    --Frontend Security (Angular)
+        --models
+            --user class (login request object sent to browser)
+            --authresponse class (login response object sent from browser)
+        --create storage object to facilitate localStorage (to store token response)
+        --flower-data service:
+            --updated comments
+            --added more imports
+            --added Storage to constructor
+            --added login method
+            --added register method
+            --added makeAuthApiCall method
+        --create authentication service
+            --getToken wrapper for dataservice.login method
+            --saveToken wrapper for dataservice.register method
+            --method to logout
+            --method to check user login status
+            --method to extract user name & email if logged in 
+        --generate navbar component
+            --logo image
+            --type script logic
+
+    --Frontend Security Part 2 branch (Angular)
+        --app component => switch "navigation bar" to call out navbar component
+        --add authentication service to service provider on app.module
+        --add login component (controller) & update app-router.module path
+        --flower listing ==> add security feature to confirm login status to use add flower button
+        --flower card ==> add security feature to confirm login status to use edit & delete buttons
+        --add home component & update app-router.module
+        --add register component (controller)
+            --typescript methods
+            --html form & links
+            --update app-router.module path
+            --also added 'login' link on register page & 'register' link on login page to help navigate
+        --fix Nav links that originally routed to default path '', which now need to navigate to flowers list page
+            --add-flower
+            --edit-flower
+            --delete-flower
+            --nav bar
+            --login
+        --Fixed Home Page layout for login/register options & for users already logged in
+
+
+
+*4/26/2021*
+
+    portfolioFinal branch:
+        
+        --backend server:
+          [authorization is being validated on the frontend w/ the button toggle logic
+          and therefore does not need to be validated again on the backend ...
+          it is causing errors to be thrown for authorized users]
+            --remove Auth wrappers in the flowers.js Controller methods               
+            --remove Auth request handlers from flowers routes on index.js
+        
+
+   {#FIXME: edit-flowers.component.html: 
+            ERROR TypeError: Cannot read property 'code' of undefined
+            EditFlowerComponent.html:4
+        Here's the code:
+            <!-- confirm that [formGroup] matches the FormGroup created in the .ts file -->
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        
+        Everything processes correctly, but for some reason a TypeError is output into the browser console.
+        NO, confirmed this is not it ---> Maybe something to do with that unique code that I turned on in the schema?
+        Will investigate further...
+   }
+
+        --
+
+    
+
+
+

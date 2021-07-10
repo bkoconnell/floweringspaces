@@ -1,0 +1,22 @@
+<!-- Flower Card component html -->
+
+<div class="card ml-4" style="width: 18rem;">
+  <div class="card-header">{{ flower.name }}</div>
+  <img src="assets/images/{{ flower.image }}" alt="flower thumbnail" class="card-img-top">
+  <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted"> {{ flower.scientific }} </h6>
+      <p class="card-subtitle mt-3 mb-3 text-muted"> {{flower.size}} </p>
+      <p class="card-subtitle mt-3 mb-3 text-muted">Price: {{ flower.price }} dollars </p>
+      <p class="card-text" [innerHTML]="flower.description"></p>
+
+      <!-- Card Buttons -->
+      <div *ngIf="isLoggedIn()">
+        <!-- 'Edit' button to edit flower if user is logged in -->
+        <button (click)="editFlower(flower)" class="btn btn-info">Edit</button>        
+      </div>
+      <div *ngIf="isLoggedIn()">
+        <!-- 'Delete' button to delete flower if user is logged in -->
+        <button (click)="deleteFlower(flower)" class="btn btn-info">Delete</button>
+      </div>
+  </div>
+</div>

@@ -1,29 +1,29 @@
 <div id="header">
     <div id="logo">
-        <a href="../index"><img src="images/logo.png" alt="LOGO" height="100" width="200"></a>
+        <a href="../"><img src="images/fs_logo_01.png" alt="LOGO" height="100" width="200"></a>
     </div>
     <div id="navigation">
         <ul>
-            <li>
-                <a href="../index">Home</a>
+            <li {{#ifequal title "Flowering Spaces - Home"}} class="selected" {{/ifequal}} >
+                <a href="../">Home</a>
             </li>
-            <li class="selected">
-                <a href="../flowers">Flowers</a>
+            <li {{#ifequal title "Flowering Spaces - Nursery"}} class="selected" {{/ifequal}} >
+                <a href="../nursery">Nursery</a>
             </li>
-            <li>
-                <a href="rooms.html">Rooms</a>
+            <li {{#ifequal title "Flowering Spaces - Landscapes"}} class="selected" {{/ifequal}} >
+                <a href="../landscapes">Landscapes</a>
             </li>
-            <li>
-                <a href="meals.html">Meals</a>
+            <li {{#ifequal title "Flowering Spaces - Testimonials"}} class="selected" {{/ifequal}} >
+                <a href="../testimonials">Testimonials</a>
             </li>
-            <li>
-                <a href="news.html">News</a>
+            <li {{#ifequal title "Flowering Spaces - Garden Blog"}} class="selected" {{/ifequal}} >
+                <a href="../gardenblog">Garden Blog</a>
             </li>
-            <li>
-                <a href="about.html">About</a>
+            <li {{#ifequal title "Flowering Spaces - About"}} class="selected" {{/ifequal}} >
+                <a href="../about">About</a>
             </li>
-            <li>
-                <a href="contact.html">Contact</a>
+            <li {{#ifequal title "Flowering Spaces - Contact"}} class="selected" {{/ifequal}} >
+                <a href="../contact">Contact</a>
             </li>
         </ul>
     </div>

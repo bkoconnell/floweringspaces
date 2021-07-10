@@ -1,6 +1,11 @@
-/* GET homepage */
+
+/* Main Controller (for index/homepage) */
+
+
+// Render homepage view
 const index = (req, res) => {
-    res.render('index', {title: 'Flowering Spaces'});
+    // response to requester
+    res.render('index', {title: 'Flowering Spaces - Home'}); // renders index.hbs & passes Browser title
 };
 
 // export response

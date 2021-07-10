@@ -1,2 +1,85 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Flowering Spaces - Home</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<div id="background">
+		<div id="page">
+			{{> header}}
+			<div id="contents">
+				<div id="adbox">
+					<img src="images/fs_sg_pano_2018_front_01_resize.jpg" alt="Img">
+					<h2>"To plant a garden is to believe in tomorrow!" (Audrey Hepburn)</h2>
+					<p>
+						Here at Flowering Spaces, we love everything about gardening! We want to share our passion with you, so we're putting together a website where you can check out our nursery, view pictures of our landscape designs, and get to know a little bit more about who we are and what we're all about. </p>
+				</div>
+				<div id="main">
+					<div class="box">
+						<div>
+							<div>
+								<h3>Check out our site!</h3>
+								<ul>
+									<li>
+										<h4><a href="/landscapes">Landscapes</a></h4>
+										<span>New content added!</span>
+										<p> We've added new examples of our customized landscape designs. </p>
+									</li>
+									<li>
+										<h4><a href="/testimonials">Testimonials</a></h4>
+										<span>Coming Summer 2021</span>
+										<p>
+											Here we will post testimonials from our customers!
+											</p>
+									</li>
+									<li>
+										<h4><a href="/gardenblog">Garden Blog</a></h4>
+										<span>Coming Fall 2021</span>
+										<p>
+											This is where we will blog!
+										</p>
+									</li>
+									<li>
+										<h4><a href="/about">About</a></h4>
+										<span>Who we are and what we do!</span>
+										<p> Want to learn more about the people at Flowering Spaces? </p>
+										<p>	We'll tell you all about us!</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					{{!-- <div id="testimonials" class="box">
+						<div>
+							<div>
+								<h3>Testimonials</h3>
+								<p>
+									People love us!
+								</p>
+							</div>
+						</div>
+					</div> --}}
+				</div>
+				<div id="sidebar">
+					<div class="section">
+						<a href="/nursery"><img src="images/fs_nursery01.png" alt="Img"></a>
+					</div>
+					<div class="section">
+						<a href="/landscapes"><img src="images/fs_services_customwalkway01_resize.jpg" alt="Img"></a>
+					</div>
+					<div class="section">
+						<a href="/contact"><img src="images/fs_contact01.png" alt="Img"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{> footer}}
+	</div>
+</body>
+</html>
